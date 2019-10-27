@@ -180,42 +180,42 @@ export default {
 		/**
 		 * 勝ったとき
 		 */
-		iWon: name => `${name}님을 이겼어요♪`,
+		iWon: name => `${name}을 이겼어요♪`,
 
 		/**
 		 * 接待のつもりが勝ってしまったとき
 		 */
-		iWonButSettai: name => `(${name}님과의 대국에서 이겨버렸어요...)`,
+		iWonButSettai: name => `(${name}과의 대국에서 이겨버렸어요...)`,
 
 		/**
 		 * 負けたとき
 		 */
-		iLose: name => `${name}님에게 졌어요오...`,
+		iLose: name => `${name}에게 졌어요오...`,
 
 		/**
 		 * 接待で負けてあげたとき
 		 */
-		iLoseButSettai: name => `(${name}님과의 대전에서 져드렸답니다...♪)`,
+		iLoseButSettai: name => `(${name}과의 대전에서 져드렸답니다...♪)`,
 
 		/**
 		 * 引き分けたとき
 		 */
-		drawn: name => `${name}님과 비겼어요~`,
+		drawn: name => `${name}과 비겼어요~`,
 
 		/**
 		 * 接待で引き分けたとき
 		 */
-		drawnSettai: name => `(${name}님과의 대전에서 비겼어요...)`,
+		drawnSettai: name => `(${name}과의 대전에서 비겼어요...)`,
 
 		/**
 		 * 相手が投了したとき
 		 */
-		youSurrendered: name => `${name}님이 항복해버렸어요`,
+		youSurrendered: name => `${name}이 항복해버렸어요`,
 
 		/**
 		 * 接待してたら相手が投了したとき
 		 */
-		settaiButYouSurrendered: name => `(${name}님과 대전하던 도중에 항복을 받아내 버렸어요... 미안해요(웃음))`,
+		settaiButYouSurrendered: name => `(${name}과 대전하던 도중에 항복을 받아내 버렸어요... 미안해요(웃음))`,
 	},
 
 	/**

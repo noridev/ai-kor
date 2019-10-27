@@ -24,7 +24,7 @@ export default class extends Module {
 			const omikuji = blessing[Math.floor(rng() * blessing.length)];
 			const itemPrefix = Math.floor(rng() * 5) != 0 ? itemPrefixes[Math.floor(rng() * itemPrefixes.length)] : '';
 			const item = items[Math.floor(rng() * items.length)];
-			msg.reply(`**${omikuji}🎉**\n럭키 아이템: ${itemPrefix}${item}`, serifs.fortune.cw(msg.friend.name));
+			msg.reply(`**${omikuji}🎉**\n럭키 아이템: ${itemPrefix} ${item}`, serifs.fortune.cw(msg.friend.name));
 			return true;
 		} else {
 			return false;
