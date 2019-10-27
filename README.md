@@ -13,8 +13,9 @@
 그리고 그 디렉토리에 `config.json`을 작성합니다. 내용은 다음과 같이 합니다:
 ``` json
 {
-	"host": "https:// + 당신의 인스턴스 URL (맨 뒤의 /는 제외)",
-	"i": "아이쨩을 가동하고 싶은 어카운트의 API키",
+	"host": "https:// + 당신의 인스턴스 URL (필수, 맨 뒤의 /는 제외)",
+	"hostExternalUrl": "외부에서 접속 가능한 URL (필수, 맨 뒤의 /는 제외)",
+	"i": "아이쨩을 가동하고 싶은 어카운트의 API키 (필수)",
 	"keywordEnabled": "키워드를 기억하는 기능을 (MeCab 필요) 활성화 할 경우에는 true (아니라면 false)",
 	"chartEnabled": "차트 기능을 활성화 하지 않을 때에는 false",
 	"reversiEnabled": "아이쨩과 리버시에서 대전할 수 있는 기능을 활성화 하고 싶은 경우에 true (아니라면 false)",

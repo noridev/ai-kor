@@ -30,7 +30,7 @@ export default class Message {
 	}
 
 	public get extractedText(): string {
-		const host = new URL(config.host).host.replace(/\./g, '\\.');
+		const host = new URL(config.hostExternalUrl).host.replace(/\./g, '\\.');
 		return this.text
 			.replace(new RegExp(`^@${this.ai.account.username}@${host}\\s`, 'i'), '')
 			.replace(new RegExp(`^@${this.ai.account.username}\\s`, 'i'), '')

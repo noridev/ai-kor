@@ -45,7 +45,7 @@ class Session {
 
 	private get userName(): string {
 		const name = getUserName(this.user);
-		return `?[${name}](${config.host}/@${this.user.username})${titles.some(x => name.endsWith(x)) ? '' : '님'}`;
+		return `?[${name}](${config.hostExternalUrl}/@${this.user.username})${titles.some(x => name.endsWith(x)) ? '' : '님'}`;
 	}
 
 	private get strength(): number {
@@ -61,7 +61,7 @@ class Session {
 	}
 
 	private get url(): string {
-		return `${config.host}/games/reversi/${this.game.id}`;
+		return `${config.hostExternalUrl}/games/reversi/${this.game.id}`;
 	}
 
 	constructor() {
