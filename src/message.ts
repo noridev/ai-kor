@@ -106,7 +106,7 @@ export default class Message {
 
 	@autobind
 	public includes(words: string[]): boolean {
-		return includes(this.text, words);
+		return includes(this.text.replace(/\s/g,''), words);
 	}
 
 	@autobind

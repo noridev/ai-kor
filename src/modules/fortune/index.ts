@@ -17,14 +17,14 @@ export default class extends Module {
 
 	@autobind
 	private async mentionHook(msg: Message) {
-		if (msg.includes(['占', 'うらな', '運勢', 'おみくじ'])) {
+		if (msg.includes(['점', '점괘', '운세', '오미쿠지'])) {
 			const date = new Date();
 			const seed = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}@${msg.userId}`;
 			const rng = seedrandom(seed);
 			const omikuji = blessing[Math.floor(rng() * blessing.length)];
 			const itemPrefix = Math.floor(rng() * 5) != 0 ? itemPrefixes[Math.floor(rng() * itemPrefixes.length)] : '';
 			const item = items[Math.floor(rng() * items.length)];
-			msg.reply(`**${omikuji}🎉**\nラッキーアイテム: ${itemPrefix}${item}`, serifs.fortune.cw(msg.friend.name));
+			msg.reply(`**${omikuji}🎉**\n럭키 아이템: ${itemPrefix}${item}`, serifs.fortune.cw(msg.friend.name));
 			return true;
 		} else {
 			return false;
