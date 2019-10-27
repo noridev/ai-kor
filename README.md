@@ -1,8 +1,8 @@
 <h1><p align="center"><img src="./ai.svg" alt="藍" height="200"></p></h1>
-<p align="center">An Ai for Misskey. <a href="./torisetu.md">About Ai</a></p>
+<p align="center">An Ai for Misskey. <a href="./torisetu.md">사용법</a></p>
 
 ## 이것에 대한 설명
-미스키용 한국어 봇 입니다!
+미스키용 한국어 봇 입니다! [봇 사용법](https://gitlab.com/chocological00/aibot-korean/blob/master/torisetu.md)
 
 ## 인스톨
 > Node.js와 npm과 MeCab (옵션)[^1]이 인스톨 되어있어야 합니다.
@@ -30,8 +30,12 @@
 ## 기억
 아이쨩은 기억의 보존에 인메모리 데이터베이스를 사용하고 있으며, 아이쨩의 인스톨 디렉토리에 `memory.json`이라는 이름으로 영속화됩니다.
 
+## 한국어 번역
+- 역: [@narve@madost.one](https://madost.one/@narve)
+- 식/가벼운 커스텀: [@chocologic@madost.one](https://madost.one/@chocologic)
+
 ## 라이센스
-MIT
+MIT. Originally developed by [Syuilo](https://github.com/syuilo/ai).
 
 ## Awards
 <img src="./WorksOnMyMachine.png" alt="Works on my machine" height="120">
