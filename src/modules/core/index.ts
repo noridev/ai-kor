@@ -157,13 +157,13 @@ export default class extends Module {
 
 	@autobind
 	private erait(msg: Message): boolean {
-		const match = msg.extractedText.replace(/\s/g,'').match(/(.+?)(했으니까칭찬해줘)/);
+		const match = msg.extractedText.match(/(.+?)(했으니까(( 칭찬해)|(칭찬해)))/);
 		if (match) {
 			msg.reply(getSerif(serifs.core.erait.specify(match[1], msg.friend.name)));
 			return true;
 		}
 
-		const match2 = msg.extractedText.replace(/\s/g,'').match(/(.+?)할((거)|(꺼))(니까칭찬해줘)/);
+		const match2 = msg.extractedText.match(/(.+?)할((거)|(꺼)|( 거)|( 꺼)))(니까(( 칭찬해)|(칭찬해)))/);
 		if (match2) {
 			msg.reply(getSerif(serifs.core.erait.specify(match2[1], msg.friend.name)));
 			return true;

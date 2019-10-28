@@ -138,7 +138,7 @@ export default class extends Module {
 
 	@autobind
 	private async mentionHook(msg: Message) {
-		if (msg.includes(['이모티콘', '이모지', 'emoji'])) {
+		if (msg.includes(['이모티콘', '이모지', '오늘의콘', '가차', '가챠', 'emoji'])) {
 			const hand = hands[Math.floor(Math.random() * hands.length)];
 			const face = faces[Math.floor(Math.random() * faces.length)];
 			const emoji = Array.isArray(hand) ? hand[0] + face + hand[1] : hand + face + hand;
