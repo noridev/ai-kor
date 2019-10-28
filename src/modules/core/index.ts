@@ -164,7 +164,7 @@ export default class extends Module {
 			return true;
 		}
 
-		const match2 = msg.extractedText.match(/(.+?)할((거)|(꺼)|( 거)|( 꺼)))(니까(( 칭찬해)|(칭찬해)))/);
+		const match2 = msg.extractedText.match(/(.+?)할((거)|(꺼)|( 거)|( 꺼))(니까(( 칭찬해)|(칭찬해)))/);
 		if (match2) {
 			msg.reply(getSerif(serifs.core.erait.specify(match2[1], msg.friend.name)));
 			return true;
