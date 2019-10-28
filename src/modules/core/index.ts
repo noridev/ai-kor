@@ -46,8 +46,8 @@ export default class extends Module {
 	@autobind
 	private setName(msg: Message): boolean  {
 		if (!msg.text) return false;
-		if (!msg.text.includes('라고 불러줘')) return false;
-		if (msg.text.startsWith('라고 불러줘')) return false;
+		if ((!msg.text.includes('라고 불러줘'))||(!msg.text.includes('라 불러줘 '))||(!msg.text.includes('로 불러줘'))) return false;
+		if (msg.text.startsWith('라고 불러줘')||msg.text.startsWith('라 불러줘')||msg.text.startsWith('로 불러줘')) return false;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
@@ -57,8 +57,9 @@ export default class extends Module {
 			return true;
 		}
 
-		let name = msg.text.match(/^(.+?)(라고 불러줘)/)[1];
-		if(name.endsWith('이')) name = name.substr(0, name.length - 1);
+		let name = msg.text.match(/^(.+?)((라((고 불러줘)|( 불러줘)))|(로 불러줘))/)[1];
+		if(name.endsWith('으')) name = name.substr(0, name.length - 1);
+		else if(name.endsWith('이')) name = name.substr(0, name.length - 1);
 
 		if (name.length > 10) {
 			msg.reply(serifs.core.tooLong);
@@ -169,7 +170,7 @@ export default class extends Module {
 			return true;
 		}
 
-		if (!msg.includes(['칭찬해줘'])) return false;
+		if (!msg.includes(['칭찬해'])) return false;
 
 		msg.reply(getSerif(serifs.core.erait.general(msg.friend.name)));
 
@@ -328,7 +329,7 @@ export default class extends Module {
 
 	@autobind
 	private ote(msg: Message): boolean {
-		if (!msg.or(['손'])) return false;
+		if (!msg.is(['손'])) return false;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
@@ -354,7 +355,7 @@ export default class extends Module {
 
 	@autobind
 	private rmrf(msg: Message): boolean | HandlerResult {
-		if (!msg.includes(['rm -rf'])) return false;
+		if (!msg.includes(['rm-rf'])) return false;
 
 		msg.friend.decLove();
 

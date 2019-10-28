@@ -4,9 +4,9 @@ export default {
 	core: {
 		setNameOk: name => `알겠어요. 이제부터 ${name}이라고 부를게요!`,
 
-		san: '~씨를 붙이는게 좋을까요?',
+		san: '~님을 붙이는게 좋을까요?',
 
-		yesOrNo: `네'또는'아니요'밖에 몰라요오...`,
+		yesOrNo: `응'또는'아니'밖에 몰라요오...`,
 
 		hello: name => name ? `안녕하세요, ${name}♪` : `안녕하세요♪`,
 
@@ -36,8 +36,8 @@ export default {
 			],
 
 			specify: (thing, name) => name ? [
-				`${name}、${thing}라는건 정말 대단해요!`,
-				`${name}、${thing}라는건 정말 대단하네요 ~♪`
+				`${name}, ${thing}라는건 정말 대단해요!`,
+				`${name}, ${thing}라는건 정말 대단하네요 ~♪`
 			] : [
 				`${thing}라는건 대단해요!`,
 				`${thing}라는건 대단하네요 ~♪`
@@ -97,7 +97,7 @@ export default {
 		suki: {
 			normal: '엣... 고맙습니다...♪',
 
-			love: name => `저도 그... ${name}를 정말 좋아해요!`,
+			love: name => `저도 그... ${name}을 정말 좋아해요!`,
 
 			hate: null
 		},
@@ -170,12 +170,12 @@ export default {
 		/**
 		 * 対局開始
 		 */
-		started: (name, strength) => `${name}와 대국을 시작했어요! (난이도${strength})`,
+		started: (name, strength) => `${name}과 대국을 시작했어요! (난이도${strength})`,
 
 		/**
 		 * 接待開始
 		 */
-		startedSettai: name => `(${name}와의 대전을 시작했어요)`,
+		startedSettai: name => `(${name}과의 대전을 시작했어요)`,
 
 		/**
 		 * 勝ったとき
@@ -303,7 +303,7 @@ export default {
 	 * 占い
 	 */
 	fortune: {
-		cw: name => name ? `오늘 ${name}님의 운세를 점쳐보았어요...` : '당신의 오늘의 운세를 점쳐보았어요...',
+		cw: name => name ? `오늘 ${name}의 운세를 점쳐보았어요...` : '당신의 오늘의 운세를 점쳐보았어요...',
 	},
 
 	/**

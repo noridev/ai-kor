@@ -113,4 +113,17 @@ export default class Message {
 	public or(words: (string | RegExp)[]): boolean {
 		return or(this.text, words);
 	}
+
+	public is(words: (string | RegExp)[]): boolean
+	{
+		for(let word of words)
+		{
+			if(typeof word === 'object')
+			{
+				if(word.test(this.text)) return true;
+			}
+			else if(word === this.text) return true;
+		}
+		return false;
+	}
 }
