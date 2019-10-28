@@ -6,7 +6,7 @@ export default {
 
 		san: '~님을 붙이는게 좋을까요?',
 
-		yesOrNo: `응'또는'아니'밖에 몰라요오...`,
+		yesOrNo: `'응' 또는 '아니' 밖에 몰라요오...`,
 
 		hello: name => name ? `안녕하세요, ${name}♪` : `안녕하세요♪`,
 
