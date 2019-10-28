@@ -5,9 +5,9 @@ import Message from '../../message';
 import serifs, { getSerif } from '../../serifs';
 import getDate from '../../utils/get-date';
 
-const titles = ['님', '씨', '군', '당신', '쨩', '양', '선생님'];
+const titles = ['님', '씨', '군', '당신', '쨩', '양', '선생님', '센세'];
 
-const invalidChars = ['@', '#', '*', ':', '(', '[', ' ', '　'];
+const invalidChars = ['@', '#', '*', ':', '(', '[', '　'];
 
 export default class extends Module {
 	public readonly name = 'core';
@@ -46,7 +46,7 @@ export default class extends Module {
 	@autobind
 	private setName(msg: Message): boolean  {
 		if (!msg.text) return false;
-		if ((!msg.text.includes('고불러줘'))||(!msg.text.includes('라불러줘 '))||(!msg.text.includes('로불러줘'))) return false;
+		if ((!msg.text.includes('고불러줘'))&&(!msg.text.includes('라불러줘 '))&&(!msg.text.includes('로불러줘'))) return false;
 		if (msg.text.startsWith('라고 불러줘')||msg.text.startsWith('라 불러줘')||msg.text.startsWith('로 불러줘')) return false;
 
 		// メッセージのみ

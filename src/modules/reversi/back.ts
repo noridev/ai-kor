@@ -19,7 +19,7 @@ function getUserName(user) {
 }
 
 const titles = [
-	'님', '씨', '군', '당신', '쨩', '양', '선생님'
+	'님', '씨', '군', '당신', '쨩', '양', '선생님', '센세'
 ];
 
 class Session {
