@@ -57,7 +57,7 @@ export default class extends Module {
 			return true;
 		}
 
-		let name = msg.text.match(/^(.+?)((라((고 불러줘)|( 불러줘)))|(로 불러줘))/)[1];
+		let name = msg.text.match(/^(.+?)((라((고 불러)|( 불러)))|(로 불러))(( 줘)|(줘))/)[1];
 		if(name.endsWith('으')) name = name.substr(0, name.length - 1);
 		else if(name.endsWith('이')) name = name.substr(0, name.length - 1);
 
