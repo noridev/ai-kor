@@ -135,20 +135,20 @@ export default class extends Module {
 			return true;
 		}
 
-		if (msg.includes(['다녀', '갔다올'])) {
-			msg.reply(
-				msg.friend.love >= 7
-					? serifs.core.itterassyai.love(msg.friend.name)
-					: serifs.core.itterassyai.normal(msg.friend.name));
-			incLove();
-			return true;
-		}
-
 		if (msg.includes(['다녀왔', '갔다왔', '집왔', '집옴', '갔다옴'])) {
 			msg.reply(
 				msg.friend.love >= 15 ? serifs.core.okaeri.love2(msg.friend.name) :
 				msg.friend.love >= 7 ? getSerif(serifs.core.okaeri.love(msg.friend.name)) :
 				serifs.core.okaeri.normal(msg.friend.name));
+			incLove();
+			return true;
+		}
+
+		if (msg.includes(['다녀', '갔다올'])) {
+			msg.reply(
+				msg.friend.love >= 7
+					? serifs.core.itterassyai.love(msg.friend.name)
+					: serifs.core.itterassyai.normal(msg.friend.name));
 			incLove();
 			return true;
 		}
