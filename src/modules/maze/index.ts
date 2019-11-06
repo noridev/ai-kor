@@ -60,10 +60,10 @@ export default class extends Module {
 		if (msg.includes(['미로'])) {
 			let size = null;
 			if (msg.includes(['짱쉽게', '짱간단하게', '짱쉬운', '짱간단한'])) size = 'veryEasy';
-			if (msg.includes(['간단', '쉬움', '쉬운', '착함', '작음', '쉽게', '작게'])) size = 'easy';
-			if (msg.includes(['어려운', '어려움', '복잡함', '복잡한', '큰', '크게'])) size = 'hard';
-			if (msg.includes(['헬', '지옥'])) size = 'veryHard';
-			if (msg.includes(['아이쨩']) && msg.includes(['진심'])) size = 'ai';
+			else if (msg.includes(['간단', '쉬움', '쉬운', '착함', '작음', '쉽게', '작게'])) size = 'easy';
+			else if (msg.includes(['어려운', '어려움', '복잡함', '복잡한', '큰', '크게'])) size = 'hard';
+			else if (msg.includes(['헬', '지옥'])) size = 'veryHard';
+			else if (msg.includes(['아이쨩']) && msg.includes(['진심'])) size = 'ai';
 			this.log('Maze requested');
 			setTimeout(async () => {
 				const file = await this.genMazeFile(Date.now(), size);
