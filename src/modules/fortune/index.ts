@@ -17,7 +17,7 @@ export default class extends Module {
 
 	@autobind
 	private async mentionHook(msg: Message) {
-		if (msg.includes(['점', '점괘', '운세', '오미쿠지'])) {
+		if (msg.includes(['점', '점괘', '운세', '오미쿠지', '사주', '팔자'])) {
 			const date = new Date();
 			const seed = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}@${msg.userId}`;
 			const rng = seedrandom(seed);
