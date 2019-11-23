@@ -136,7 +136,7 @@ export default class extends Module {
 
 	@autobind
 	private async mentionHook(msg: Message) {
-		if (!msg.includes(['차트'])) {
+		if (!msg.includes(['차트', '챁'])) {
 			return false;
 		} else {
 			this.log('Chart requested');
@@ -144,7 +144,7 @@ export default class extends Module {
 
 		let type = 'random';
 		if (msg.includes(['팔로워'])) type = 'followers';
-		if (msg.includes(['노트'])) type = 'userNotes';
+		if (msg.includes(['노트', '놑'])) type = 'userNotes';
 
 		const file = await this.genChart(type, {
 			user: msg.user
