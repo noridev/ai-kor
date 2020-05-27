@@ -2,21 +2,24 @@
 <p align="center">An Ai for Misskey. <a href="./torisetu.md">사용법</a></p>
 
 ## 이것에 대한 설명
-미스키용 한국어 봇 입니다! [봇 사용법](https://gitlab.com/chocological00/aibot-korean/blob/master/torisetu.md)
+미스키용 한국어 봇 입니다! [봇 사용법](./torisetu.md)
 
 ## 인스톨
 > Node.js와 npm과 MeCab (옵션)[^1]이 인스톨 되어있어야 합니다.
 
-[^1]: 식자주) MeCab은 일본어 형태소 분석기 같은걸로 보이는데요, 한국어는 지원되지 않아요 ;ㅅ;
+[^1]: 식자주) [MeCab](https://github.com/taku910/mecab)은 일본어 형태소 분석기입니다. 키워드 기억 기능에 쓰이지만, 일본어의 요미가나를 기억하는 기능이라 한국어에서는 별 의미가 없습니다.
 
 먼저 적당한 디렉토리에 `git clone`을 합니다.
-그리고 그 디렉토리에 `config.json`을 작성합니다. 내용은 다음과 같이 합니다:
+그리고 그 디렉토리에 `config.json`을 작성합니다[^2]. 내용은 다음과 같이 합니다:
+
+[^2]: true/false의 경우 `"` **없이** 넣어주세요!
+
 ``` json
 {
 	"host": "https:// + 당신의 인스턴스 URL (필수, 맨 뒤의 /는 제외)",
 	"hostExternalUrl": "외부에서 접속 가능한 URL (필수, 맨 뒤의 /는 제외)",
 	"i": "아이쨩을 가동하고 싶은 어카운트의 API키 (필수)",
-	"keywordEnabled": "키워드를 기억하는 기능을 (MeCab 필요) 활성화 할 경우에는 true (아니라면 false)",
+	"keywordEnabled": "키워드를 기억하는 기능을 (MeCab 필요 / 한글판에서는 미지원) 활성화 할 경우에는 true (아니라면 false)",
 	"chartEnabled": "차트 기능을 활성화 하지 않을 때에는 false",
 	"reversiEnabled": "아이쨩과 리버시에서 대전할 수 있는 기능을 활성화 하고 싶은 경우에 true (아니라면 false)",
 	"serverMonitoring": "서버 감시 기능 활성화는 true (아니라면 false)",
