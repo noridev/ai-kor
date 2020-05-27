@@ -2,12 +2,12 @@
 <p align="center">An Ai for Misskey. <a href="./torisetu.md">사용법</a></p>
 
 ## 이것에 대한 설명
-미스키용 한국어 봇 입니다! [봇 사용법](https://gitlab.com/chocological00/aibot-korean/blob/master/torisetu.md)
+미스키용 한국어 봇 입니다! [봇 사용법](./torisetu.md)
 
 ## 인스톨
 > Node.js와 npm과 MeCab (옵션)[^1]이 인스톨 되어있어야 합니다.
 
-[^1]: 식자주) MeCab은 일본어 형태소 분석기 같은걸로 보이는데요, 한국어는 지원되지 않아요 ;ㅅ;
+[^1]: 식자주) [MeCab(메캅)](https://github.com/taku910/mecab)은 일본어 형태소 분석기입니다. 키워드 기억 기능에 쓰는데요, 일본어의 요미가나를 기억하는 기능이라 한국어에서는 별 의미가 없습니다. 진짜로 mecab-ko 가 필요하시다면 [은전한닢 프로젝트](http://eunjeon.blogspot.com/)를 찾아주세요!
 
 먼저 적당한 디렉토리에 `git clone`을 합니다.
 그리고 그 디렉토리에 `config.json`을 작성합니다. 내용은 다음과 같이 합니다:
