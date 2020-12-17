@@ -25,6 +25,7 @@ export default class extends Module {
 		if (note.reply != null) return;
 		if (note.text == null) return;
 		if (note.text.includes('@')) return; // (自分または他人問わず)メンションっぽかったらreject
+		if (note.user.host) return; // if user is from remote instance
 
 		const react = async (reaction: string, immediate = false) => {
 			if (!immediate) {
@@ -36,7 +37,11 @@ export default class extends Module {
 			});
 		};
 
-		const customEmojis = note.text.match(/:([^\n:]+?):/g);
+		const newEmoji = note.text.match(/:etc_new_l::([^\n:]+?)(_)([^\n:]+?)::etc_new_r:/g)
+		if (newEmoji)
+			return react(newEmoji[0].slice(11, -11))
+
+		const customEmojis = note.text.match(/:([^\n:]+?)(_)([^\n:]+?):/g);
 		if (customEmojis) {
 			// カスタム絵文字が複数種類ある場合はキャンセル
 			if (!customEmojis.every((val, i, arr) => val === arr[0])) return;
@@ -64,10 +69,14 @@ export default class extends Module {
 			return react(reaction);
 		}
 
-		if (includes(note.text, ['ぴざ'])) return react('🍕');
-		if (includes(note.text, ['ぷりん'])) return react('🍮');
-		if (includes(note.text, ['寿司', 'sushi']) || note.text === 'すし') return react('🍣');
+		if (includes(note.text, ['피자', '핏자'])) return react('🍕');
+		if (includes(note.text, ['푸딩', '푸링'])) return react('🍮');
+		if (includes(note.text, ['스시', '초밥', 'sushi'])) return react('🍣');
+		if (includes(note.text, ['햄버거'])) return react('🍔');
+		if (includes(note.text, ['타코'])) return react('🌮');
+		if (includes(note.text, ['치킨'])) return react('🍗');
+		if (includes(note.text, ['샐러드'])) return react('🥗');
 
-		if (includes(note.text, ['藍'])) return react('🙌');
+		if (includes(note.text, ['아이쨩'])) return react('🙌');
 	}
 }

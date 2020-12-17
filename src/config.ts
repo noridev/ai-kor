@@ -1,5 +1,6 @@
 type Config = {
 	host: string;
+	hostExternalUrl: string;
 	i: string;
 	master?: string;
 	wsUrl: string;

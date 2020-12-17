@@ -61,31 +61,31 @@ export default class extends Module {
 			.sort((a, b) => a.length < b.length ? 1 : -1)[0]
 			.substr(1);
 
-		if (msg.includes(['こんにちは', 'こんにちわ'])) {
+		if (msg.includes(['안녕', '안뇽', '하이'])) {
 			msg.reply(serifs.core.hello(msg.friend.name));
 			incLove();
 			return true;
 		}
 
-		if (msg.includes(['こんばんは', 'こんばんわ'])) {
+		if (msg.includes(['좋은밤', '좋은저녁'])) {
 			msg.reply(serifs.core.helloNight(msg.friend.name));
 			incLove();
 			return true;
 		}
 
-		if (msg.includes(['おは', 'おっは', 'お早う'])) {
+		if (msg.includes(['좋은아침', '쫀아', '모닝', '모우닝', '몬잉', '모운잉'])) {
 			msg.reply(serifs.core.goodMorning(tension, msg.friend.name));
 			incLove();
 			return true;
 		}
 
-		if (msg.includes(['おやすみ', 'お休み'])) {
+		if (msg.includes(['꿈꾸', '쫀밤', '좋은밤', '오야스미', '잘자', '주무세요', '굿나잇'])) {
 			msg.reply(serifs.core.goodNight(msg.friend.name));
 			incLove();
 			return true;
 		}
 
-		if (msg.includes(['行ってくる', '行ってきます', 'いってくる', 'いってきます'])) {
+		if (msg.includes(['다녀왔', '갔다왔', '집왔', '집옴', '갔다옴'])) {
 			msg.reply(
 				msg.friend.love >= 7
 					? serifs.core.itterassyai.love(msg.friend.name)
@@ -94,7 +94,7 @@ export default class extends Module {
 			return true;
 		}
 
-		if (msg.includes(['ただいま'])) {
+		if (msg.includes(['다녀', '갔다올'])) {
 			msg.reply(
 				msg.friend.love >= 15 ? serifs.core.okaeri.love2(msg.friend.name) :
 				msg.friend.love >= 7 ? getSerif(serifs.core.okaeri.love(msg.friend.name)) :
@@ -108,25 +108,19 @@ export default class extends Module {
 
 	@autobind
 	private erait(msg: Message): boolean {
-		const match = msg.extractedText.match(/(.+?)た(から|ので)(褒|ほ)めて/);
+		const match = msg.extractedText.match(/(.+?)(했으니까(( 칭찬해)|(칭찬해)))/);
 		if (match) {
 			msg.reply(getSerif(serifs.core.erait.specify(match[1], msg.friend.name)));
 			return true;
 		}
 
-		const match2 = msg.extractedText.match(/(.+?)る(から|ので)(褒|ほ)めて/);
+		const match2 = msg.extractedText.match(/(.+?)할((거)|(꺼)|( 거)|( 꺼))(니까(( 칭찬해)|(칭찬해)))/);
 		if (match2) {
 			msg.reply(getSerif(serifs.core.erait.specify(match2[1], msg.friend.name)));
 			return true;
 		}
 
-		const match3 = msg.extractedText.match(/(.+?)だから(褒|ほ)めて/);
-		if (match3) {
-			msg.reply(getSerif(serifs.core.erait.specify(match3[1], msg.friend.name)));
-			return true;
-		}
-
-		if (!msg.includes(['褒めて', 'ほめて'])) return false;
+		if (!msg.includes(['칭찬해'])) return false;
 
 		msg.reply(getSerif(serifs.core.erait.general(msg.friend.name)));
 
@@ -135,7 +129,7 @@ export default class extends Module {
 
 	@autobind
 	private omedeto(msg: Message): boolean {
-		if (!msg.includes(['おめでと'])) return false;
+		if (!msg.includes(['축하해'])) return false;
 
 		msg.reply(serifs.core.omedeto(msg.friend.name));
 
@@ -144,7 +138,7 @@ export default class extends Module {
 
 	@autobind
 	private nadenade(msg: Message): boolean {
-		if (!msg.includes(['なでなで'])) return false;
+		if (!msg.includes(['쓰담쓰담'])) return false;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
@@ -179,7 +173,7 @@ export default class extends Module {
 
 	@autobind
 	private kawaii(msg: Message): boolean {
-		if (!msg.includes(['かわいい', '可愛い'])) return false;
+		if (!msg.includes(['귀여워', '기여어'])) return false;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
@@ -194,7 +188,7 @@ export default class extends Module {
 
 	@autobind
 	private suki(msg: Message): boolean {
-		if (!msg.or(['好き', 'すき'])) return false;
+		if (!msg.or(['좋아해'])) return false;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
@@ -209,7 +203,7 @@ export default class extends Module {
 
 	@autobind
 	private hug(msg: Message): boolean {
-		if (!msg.or(['ぎゅ', 'むぎゅ', /^はぐ(し(て|よ|よう)?)?$/])) return false;
+		if (!msg.or(['규', '무규', /^(안아줘)?$/])) return false;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
@@ -243,7 +237,7 @@ export default class extends Module {
 
 	@autobind
 	private humu(msg: Message): boolean {
-		if (!msg.includes(['踏んで'])) return false;
+		if (!msg.includes(['밟아줘'])) return false;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
@@ -258,7 +252,7 @@ export default class extends Module {
 
 	@autobind
 	private batou(msg: Message): boolean {
-		if (!msg.includes(['罵倒して', '罵って'])) return false;
+		if (!msg.includes(['매도해줘', '욕해줘'])) return false;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
@@ -273,7 +267,7 @@ export default class extends Module {
 
 	@autobind
 	private itai(msg: Message): boolean {
-		if (!msg.or(['痛い', 'いたい']) && !msg.extractedText.endsWith('痛い')) return false;
+		if (!msg.or(['아파'])) return false;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
@@ -285,7 +279,7 @@ export default class extends Module {
 
 	@autobind
 	private ote(msg: Message): boolean {
-		if (!msg.or(['お手'])) return false;
+		if (!msg.or(['손'])) return false;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
@@ -300,7 +294,7 @@ export default class extends Module {
 
 	@autobind
 	private ponkotu(msg: Message): boolean | HandlerResult {
-		if (!msg.includes(['ぽんこつ'])) return false;
+		if (!msg.includes(['바보'])) return false;
 
 		msg.friend.decLove();
 
@@ -311,7 +305,7 @@ export default class extends Module {
 
 	@autobind
 	private rmrf(msg: Message): boolean | HandlerResult {
-		if (!msg.includes(['rm -rf'])) return false;
+		if (!msg.includes(['rm-rf'])) return false;
 
 		msg.friend.decLove();
 

@@ -6,7 +6,7 @@ import serifs, { getSerif } from '@/serifs';
 import { acct } from '@/utils/acct';
 import config from '@/config';
 
-const NOTIFY_INTERVAL = 1000 * 60 * 60 * 12;
+const NOTIFY_INTERVAL = 1000 * 60 * 60 * 8;
 
 export default class extends Module {
 	public readonly name = 'reminder';
@@ -37,9 +37,9 @@ export default class extends Module {
 	@autobind
 	private async mentionHook(msg: Message) {
 		let text = msg.extractedText.toLowerCase();
-		if (!text.startsWith('remind') && !text.startsWith('todo')) return false;
+		if (!text.startsWith('리마인더') && !text.startsWith('할일') && !text.startsWith('할것') && !text.toLowerCase().startsWith('todo') && !text.toLowerCase().startsWith('//todo') && !text.toLowerCase().startsWith('// todo')) return false;
 
-		if (text.startsWith('reminds') || text.startsWith('todos')) {
+		if (text.startsWith('리마인더들') || text.startsWith('할일들') || text.startsWith('할것들') || text.startsWith('투두리스트') || text.toLowerCase().startsWith('todos') || text.toLowerCase().startsWith('todolist')) {
 			const reminds = this.reminds.find({
 				userId: msg.userId,
 			});
@@ -110,8 +110,8 @@ export default class extends Module {
 			return;
 		}
 
-		const done = msg.includes(['done', 'やった', 'やりました', 'はい']);
-		const cancel = msg.includes(['やめる', 'やめた', 'キャンセル']);
+		const done = msg.includes(['done', '끝', '했어', '응', '웅']);
+		const cancel = msg.includes(['관둘', '관뒀', '포기', '취소', '안해']);
 
 		if (done || cancel) {
 			this.unsubscribeReply(key);

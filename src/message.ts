@@ -38,7 +38,7 @@ export default class Message {
 	 * メンション部分を除いたテキスト本文
 	 */
 	public get extractedText(): string {
-		const host = new URL(config.host).host.replace(/\./g, '\\.');
+		const host = new URL(config.hostExternalUrl).host.replace(/\./g, '\\.');
 		return this.text
 			.replace(new RegExp(`^@${this.ai.account.username}@${host}\\s`, 'i'), '')
 			.replace(new RegExp(`^@${this.ai.account.username}\\s`, 'i'), '')
@@ -99,11 +99,24 @@ export default class Message {
 
 	@autobind
 	public includes(words: string[]): boolean {
-		return includes(this.text, words);
+		return includes(this.text.replace(/\s/g,''), words);
 	}
 
 	@autobind
 	public or(words: (string | RegExp)[]): boolean {
 		return or(this.text, words);
+	}
+
+	public is(words: (string | RegExp)[]): boolean
+	{
+		for(let word of words)
+		{
+			if(typeof word === 'object')
+			{
+				if(word.test(this.text)) return true;
+			}
+			else if(word === this.text) return true;
+		}
+		return false;
 	}
 }

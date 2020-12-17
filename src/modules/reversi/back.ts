@@ -19,10 +19,7 @@ function getUserName(user) {
 }
 
 const titles = [
-	'さん', 'サン', 'ｻﾝ', '㌠',
-	'ちゃん', 'チャン', 'ﾁｬﾝ',
-	'君', 'くん', 'クン', 'ｸﾝ',
-	'先生', 'せんせい', 'センセイ', 'ｾﾝｾｲ'
+	'님', '씨', '군', '당신', '쨩', '양', '선생님', '센세'
 ];
 
 class Session {
@@ -63,7 +60,7 @@ class Session {
 
 	private get userName(): string {
 		const name = getUserName(this.user);
-		return `?[${name}](${config.host}/@${this.user.username})${titles.some(x => name.endsWith(x)) ? '' : 'さん'}`;
+		return `?[${name}](${config.hostExternalUrl}/@${this.user.username})${titles.some(x => name.endsWith(x)) ? '' : '님'}`;
 	}
 
 	private get strength(): number {
@@ -79,7 +76,7 @@ class Session {
 	}
 
 	private get url(): string {
-		return `${config.host}/games/reversi/${this.game.id}`;
+		return `${config.hostExternalUrl}/games/reversi/${this.game.id}`;
 	}
 
 	constructor() {
@@ -413,7 +410,7 @@ class Session {
 			? serifs.reversi.startedSettai(this.userName)
 			: serifs.reversi.started(this.userName, this.strength.toString());
 
-		return await this.post(`${text}\n→[観戦する](${this.url})`);
+		return await this.post(`${text}\n→[관전하기](${this.url})`);
 	}
 
 	/**

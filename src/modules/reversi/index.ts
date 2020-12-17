@@ -45,7 +45,7 @@ export default class extends Module {
 
 	@autobind
 	private async mentionHook(msg: Message) {
-		if (msg.includes(['リバーシ', 'オセロ', 'reversi', 'othello'])) {
+		if (msg.includes(['리버시', '오셀로', 'reversi', 'othello'])) {
 			if (config.reversiEnabled) {
 				msg.reply(serifs.reversi.ok);
 
@@ -91,27 +91,27 @@ export default class extends Module {
 		const form = [{
 			id: 'publish',
 			type: 'switch',
-			label: '藍が対局情報を投稿するのを許可',
+			label: '아이쨩이 대국 정보를 투고하는 것을 허락',
 			value: true
 		}, {
 			id: 'strength',
 			type: 'radio',
-			label: '強さ',
+			label: '난이도',
 			value: 3,
 			items: [{
-				label: '接待',
+				label: '접대',
 				value: 0
 			}, {
-				label: '弱',
+				label: '약',
 				value: 2
 			}, {
-				label: '中',
+				label: '중',
 				value: 3
 			}, {
-				label: '強',
+				label: '강',
 				value: 4
 			}, {
-				label: '最強',
+				label: '최강',
 				value: 5
 			}]
 		}];
