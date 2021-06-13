@@ -202,6 +202,8 @@ export default class 藍 {
 	@autobind
 	private async onReceiveMessage(msg: Message): Promise<void> {
 		this.log(chalk.gray(`<<< An message received: ${chalk.underline(msg.id)}`));
+		this.log(chalk.gray(`Message Content: ${msg.text}`));
+		this.log(chalk.gray(`Message Sender: ${msg.user.username}@${msg.user.host}`));
 
 		// Ignore message if the user is a bot
 		// To avoid infinity reply loop.
@@ -350,8 +352,13 @@ export default class 藍 {
 	 */
 	@autobind
 	public async post(param: any) {
-		const res = await this.api('notes/create', param);
-		return res.createdNote;
+		try { 
+			const res = await this.api('notes/create', param);
+			return res.createdNote;
+		}
+		catch {
+			return null;
+		}
 	}
 
 	/**
