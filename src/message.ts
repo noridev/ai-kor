@@ -88,6 +88,7 @@ export default class Message {
 			});
 		} else {
 			return await this.ai.post({
+				visibility: this.messageOrNote.visibility,
 				replyId: this.messageOrNote.id,
 				text: text,
 				fileIds: opts?.file ? [opts?.file.id] : undefined,

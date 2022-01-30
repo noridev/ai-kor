@@ -149,9 +149,9 @@ export default class 藍 {
 		// 返信されたとき
 		mainStream.on('reply', async data => {
 			if (data.userId == this.account.id) return; // 自分は弾く
-			if (data.text && data.text.startsWith('@' + this.account.username)) return;
 			// Misskeyのバグで投稿が非公開扱いになる
 			if (data.text == null) data = await this.api('notes/show', { noteId: data.id });
+			if (data.text && data.text.contains('@' + this.account.username)) return;
 			this.onReceiveMessage(new Message(this, data, false));
 		});
 
