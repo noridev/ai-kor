@@ -6,9 +6,8 @@ WORKDIR /aibot-korean
 
 COPY . ./
 
-RUN apk add --no-cache build-base g++ cairo-dev jpeg-dev pango-dev giflib-dev tini && \
-	npm install && npm run build
+RUN apk add --no-cache build-base g++ cairo-dev jpeg-dev pango-dev giflib-dev tini
 
 ENTRYPOINT ["/sbin/tini", "--"]
 
-CMD ["npm", "start"]
+CMD ["npm", "i", "&&", "npm", "run", "build"]
