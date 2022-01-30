@@ -151,7 +151,7 @@ export default class 藍 {
 			if (data.userId == this.account.id) return; // 自分は弾く
 			// Misskeyのバグで投稿が非公開扱いになる
 			if (data.text == null) data = await this.api('notes/show', { noteId: data.id });
-			if (data.text && data.text.contains('@' + this.account.username)) return;
+			if (data.text && data.text.includes('@' + this.account.username)) return;
 			this.onReceiveMessage(new Message(this, data, false));
 		});
 
