@@ -341,13 +341,9 @@ export default {
 	reminder: {
 		invalid: '오잉...?',
 
-<<<<<<< HEAD
-		reminds: '해야할 일이 있어요!',
-=======
-		doneFromInvalidUser: 'イタズラはめっですよ！',
+		doneFromInvalidUser: '장난치면 혼나요!',
 
-		reminds: 'やること一覧です！',
->>>>>>> original/master
+		reminds: '해야할 일이 있어요!',
 
 		notify: (name) => name ? `${name}, 이거 하셨어요?` : `이거 하셨나요?`,
 
@@ -462,14 +458,9 @@ export default {
 			'じー',
 			'はにゃ？',
 		],
-<<<<<<< HEAD
 		want: item => `${item}이 갖고 싶어...`,
 		see: item => `오늘 산책하던 중에, 길에 ${item}이 떨어져 있는 것을 봤어요!`,
-=======
-		want: item => `${item}、欲しいなぁ...`,
-		see: item => `お散歩していたら、道に${item}が落ちているのを見たんです！`,
-		expire: item => `気づいたら、${item}の賞味期限が切れてました…`,
->>>>>>> original/master
+		expire: item => `알고 보니, ${item}의 유통기한이 지났어요...`,
 	},
 };
 
