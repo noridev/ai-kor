@@ -29,7 +29,8 @@
 	"memoryDir": "memory.json의 경로 (옵션, 기본값은 '.'(레파지토리 루트입니다))"
 }
 ```
-`npm install`하고 `npm run build`하고 `npm start`하면 기동 가능합니다.
+<!-- `npm install`하고 `npm run build`하고 `npm start`하면 기동 가능합니다. -->
+`yarn install`하고 `yarn build`하고 `yarn start`하면 기동 가능합니다.
 
 ## Docker로 사용
 먼저, 적당한 디렉토리에 `git clone` 합니다.
