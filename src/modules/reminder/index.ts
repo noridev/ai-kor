@@ -59,9 +59,12 @@ export default class extends Module {
 		const separatorIndex = text.indexOf(' ') > -1 ? text.indexOf(' ') : text.indexOf('\n');
 		const thing = text.substr(separatorIndex + 1).trim();
 
-		if (thing === '' && msg.quoteId == null) {
+		if (thing === '' && msg.quoteId == null || msg.visibility === 'followers') {
 			msg.reply(serifs.reminder.invalid);
-			return true;
+			return {
+				reaction: '🆖',
+				immediate: true,
+			};
 		}
 
 		const remind = this.reminds.insertOne({
@@ -112,11 +115,15 @@ export default class extends Module {
 
 		const done = msg.includes(['done', '끝', '했어', '응', '웅']);
 		const cancel = msg.includes(['관둘', '관뒀', '포기', '취소', '안해']);
+		const isOneself = msg.userId === remind.userId;
 
-		if (done || cancel) {
+		if ((done || cancel) && isOneself) {
 			this.unsubscribeReply(key);
 			this.reminds.remove(remind);
 			msg.reply(done ? getSerif(serifs.reminder.done(msg.friend.name)) : serifs.reminder.cancel);
+			return;
+		} else if (isOneself === false) {
+			msg.reply(serifs.reminder.doneFromInvalidUser);
 			return;
 		} else {
 			if (msg.isDm) this.unsubscribeReply(key);
@@ -143,10 +150,20 @@ export default class extends Module {
 				text: serifs.reminder.notifyWithThing(remind.thing, friend.name)
 			});
 		} else {
-			reply = await this.ai.post({
-				renoteId: remind.thing == null && remind.quoteId ? remind.quoteId : remind.id,
-				text: acct(friend.doc.user) + ' ' + serifs.reminder.notify(friend.name)
-			});
+			try {
+				reply = await this.ai.post({
+					renoteId: remind.thing == null && remind.quoteId ? remind.quoteId : remind.id,
+					text: acct(friend.doc.user) + ' ' + serifs.reminder.notify(friend.name)
+				});
+			} catch (err) {
+				// renote対象が消されていたらリマインダー解除
+				if (err.statusCode === 400) {
+					this.unsubscribeReply(remind.thing == null && remind.quoteId ? remind.quoteId : remind.id);
+					this.reminds.remove(remind);
+					return;
+				}
+				return;
+			}
 		}
 
 		this.subscribeReply(remind.id, remind.isDm, remind.isDm ? remind.userId : reply.id, {

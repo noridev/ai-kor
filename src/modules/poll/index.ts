@@ -67,14 +67,7 @@ export default class extends Module {
 
 		const poll = polls[Math.floor(Math.random() * polls.length)];
 
-		const choices = poll[0] === 'そして輝くウルトラ' ? [
-			'そう',
-			'どちらかというとそう',
-			'どちらでもない',
-			'どちらかというとそうではない',
-			'そうではない',
-			'わからない・回答しない',
-		] : [
+		const choices = [
 			genItem(),
 			genItem(),
 			genItem(),

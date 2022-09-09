@@ -17,17 +17,42 @@
 ``` json
 {
 	"host": "https:// + 당신의 인스턴스 URL (필수, 맨 뒤의 /는 제외)",
-	"hostExternalUrl": "외부에서 접속 가능한 URL (필수, 맨 뒤의 /는 제외)",
 	"i": "아이쨩을 가동하고 싶은 어카운트의 API키 (필수)",
+	"master": "管理者のユーザー名(オプション)",
+	"notingEnabled": "ランダムにノートを投稿する機能を無効にする場合は false を入れる",
 	"keywordEnabled": "키워드를 기억하는 기능을 (MeCab 필요 / 한글판에서는 미지원) 활성화 할 경우에는 true (아니라면 false)",
 	"chartEnabled": "차트 기능을 활성화 하지 않을 때에는 false",
 	"reversiEnabled": "아이쨩과 리버시에서 대전할 수 있는 기능을 활성화 하고 싶은 경우에 true (아니라면 false)",
 	"serverMonitoring": "서버 감시 기능 활성화는 true (아니라면 false)",
 	"mecab": "MeCab의 인스톨 경로 (소스에서 인스톨 하였을 경우, 보통 /usr/local/bin/mecab)",
-	"mecabDic": "MeCab 사전 파일 경로 (선택사항)"
+	"mecabDic": "MeCab 사전 파일 경로 (선택사항)",
+	"memoryDir": "memory.jsonの保存先（オプション、デフォルトは'.'（レポジトリのルートです））"
 }
 ```
 `npm install`하고 `npm run build`하고 `npm start`하면 기동 가능합니다.
+
+## Dockerで動かす
+まず適当なディレクトリに `git clone` します。
+次にそのディレクトリに `config.json` を作成します。中身は次のようにします:
+（MeCabの設定、memoryDirについては触らないでください）
+``` json
+{
+	"host": "https:// + あなたのインスタンスのURL (末尾の / は除く)",
+	"i": "藍として動かしたいアカウントのアクセストークン",
+	"master": "管理者のユーザー名(オプション)",
+	"notingEnabled": "ランダムにノートを投稿する機能を無効にする場合は false を入れる",
+	"keywordEnabled": "キーワードを覚える機能 (MeCab が必要) を有効にする場合は true を入れる (無効にする場合は false)",
+	"chartEnabled": "チャート機能を無効化する場合は false を入れてください",
+	"reversiEnabled": "藍とリバーシで対局できる機能を有効にする場合は true を入れる (無効にする場合は false)",
+	"serverMonitoring": "サーバー監視の機能を有効にする場合は true を入れる (無効にする場合は false)",
+	"mecab": "/usr/bin/mecab",
+	"mecabDic": "/usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd/",
+	"memoryDir": "data"
+}
+```
+`docker-compose build` して `docker-compose up` すれば起動できます。
+`docker-compose.yml` の `enable_mecab` を `0` にすると、MeCabをインストールしないようにもできます。（メモリが少ない環境など）
+
 
 ## 폰트
 일부 기능에는 폰트가 필요합니다. 아이쨩에는 폰트가 포함되어 있지 않으므로 직접 폰트를 인스톨 디렉토리에 `font.ttf`라는 파일명으로 설치해주세요.

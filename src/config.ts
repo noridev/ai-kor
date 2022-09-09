@@ -7,10 +7,12 @@ type Config = {
 	apiUrl: string;
 	keywordEnabled: boolean;
 	reversiEnabled: boolean;
+	notingEnabled: boolean;
 	chartEnabled: boolean;
 	serverMonitoring: boolean;
 	mecab?: string;
 	mecabDic?: string;
+	memoryDir?: string;
 };
 
 const config = require('../conf/config.json');
