@@ -4,54 +4,54 @@
 ## 이것에 대한 설명
 미스키용 한국어 봇 입니다! [봇 사용법](./torisetu.md)
 
-## 인스톨
-> Node.js와 npm과 MeCab (옵션)[^1]이 인스톨 되어있어야 합니다.
+## 설치
+> Node.js와 npm과 MeCab (옵션)[^1]이 설치되어 있어야 합니다.
 
 [^1]: 식자주) [MeCab](https://github.com/taku910/mecab)은 일본어 형태소 분석기입니다. 키워드 기억 기능에 쓰이지만, 일본어의 요미가나를 기억하는 기능이라 한국어에서는 별 의미가 없습니다.
 
-먼저 적당한 디렉토리에 `git clone`을 합니다.
+먼저, 적당한 디렉토리에 `git clone` 합니다.
 그리고 그 디렉토리에 `config.json`을 작성합니다[^2]. 내용은 다음과 같이 합니다:
 
 [^2]: true/false의 경우 `"` **없이** 넣어주세요!
 
 ``` json
 {
-	"host": "https:// + 당신의 인스턴스 URL (필수, 맨 뒤의 /는 제외)",
-	"i": "아이쨩을 가동하고 싶은 어카운트의 API키 (필수)",
-	"master": "管理者のユーザー名(オプション)",
-	"notingEnabled": "ランダムにノートを投稿する機能を無効にする場合は false を入れる",
-	"keywordEnabled": "키워드를 기억하는 기능을 (MeCab 필요 / 한글판에서는 미지원) 활성화 할 경우에는 true (아니라면 false)",
+	"host": "https:// + 당신의 인스턴스 URL (맨 뒤의 /는 제외)",
+	"i": "아이쨩을 가동하고 싶은 어카운트의 API 키",
+	"master": "관리자의 사용자명 (옵션)",
+	"notingEnabled": "랜덤으로 노트를 작성하는 기능을 비활성화할 경우 false 입력",
+	"keywordEnabled": "키워드를 기억하는 기능을 (MeCab 필요 / 한글판에서는 미지원) 활성화할 경우에는 true (아니라면 false)",
 	"chartEnabled": "차트 기능을 활성화 하지 않을 때에는 false",
 	"reversiEnabled": "아이쨩과 리버시에서 대전할 수 있는 기능을 활성화 하고 싶은 경우에 true (아니라면 false)",
 	"serverMonitoring": "서버 감시 기능 활성화는 true (아니라면 false)",
-	"mecab": "MeCab의 인스톨 경로 (소스에서 인스톨 하였을 경우, 보통 /usr/local/bin/mecab)",
-	"mecabDic": "MeCab 사전 파일 경로 (선택사항)",
-	"memoryDir": "memory.jsonの保存先（オプション、デフォルトは'.'（レポジトリのルートです））"
+	"mecab": "MeCab의 설치 경로 (소스로 설치한 경우, 보통 /usr/local/bin/mecab)",
+	"mecabDic": "MeCab 사전 파일 경로 (옵션)",
+	"memoryDir": "memory.json의 경로 (옵션, 기본값은 '.'(레파지토리 루트입니다))"
 }
 ```
 `npm install`하고 `npm run build`하고 `npm start`하면 기동 가능합니다.
 
-## Dockerで動かす
-まず適当なディレクトリに `git clone` します。
-次にそのディレクトリに `config.json` を作成します。中身は次のようにします:
-（MeCabの設定、memoryDirについては触らないでください）
+## Docker로 사용
+먼저, 적당한 디렉토리에 `git clone` 합니다.
+그리고 그 디렉토리에 `config.json`을 작성합니다. 내용은 다음과 같이 합니다:
+(MeCab 설정, memoryDir 부분은 변경하지 마십시오)
 ``` json
 {
-	"host": "https:// + あなたのインスタンスのURL (末尾の / は除く)",
-	"i": "藍として動かしたいアカウントのアクセストークン",
-	"master": "管理者のユーザー名(オプション)",
-	"notingEnabled": "ランダムにノートを投稿する機能を無効にする場合は false を入れる",
-	"keywordEnabled": "キーワードを覚える機能 (MeCab が必要) を有効にする場合は true を入れる (無効にする場合は false)",
-	"chartEnabled": "チャート機能を無効化する場合は false を入れてください",
-	"reversiEnabled": "藍とリバーシで対局できる機能を有効にする場合は true を入れる (無効にする場合は false)",
-	"serverMonitoring": "サーバー監視の機能を有効にする場合は true を入れる (無効にする場合は false)",
+	"host": "https:// + 당신의 인스턴스 URL (맨 뒤의 /는 제외)",
+	"i": "아이쨩을 가동하고 싶은 어카운트의 API 키",
+	"master": "관리자의 사용자명 (옵션)",
+	"notingEnabled": "랜덤으로 노트를 작성하는 기능을 비활성화할 경우 false 입력",
+	"keywordEnabled": "키워드를 기억하는 기능을 (MeCab 필요 / 한글판에서는 미지원) 활성화할 경우에는 true (아니라면 false)",
+	"chartEnabled": "차트 기능을 활성화 하지 않을 때에는 false",
+	"reversiEnabled": "아이쨩과 리버시에서 대전할 수 있는 기능을 활성화 하고 싶은 경우에 true (아니라면 false)",
+	"serverMonitoring": "서버 감시 기능 활성화는 true (아니라면 false)",
 	"mecab": "/usr/bin/mecab",
 	"mecabDic": "/usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd/",
 	"memoryDir": "data"
 }
 ```
-`docker-compose build` して `docker-compose up` すれば起動できます。
-`docker-compose.yml` の `enable_mecab` を `0` にすると、MeCabをインストールしないようにもできます。（メモリが少ない環境など）
+`docker-compose build`하고 `docker-compose up` 하면 기능 가는합니다.
+`docker-compose.yml`의 `enable_mecab`를 `0`으로 하면, MeCab을 설치하지 않습니다. (메모리가 적은 환경 등)
 
 
 ## 폰트
@@ -61,8 +61,8 @@
 아이쨩은 기억의 보존에 인메모리 데이터베이스를 사용하고 있으며, 아이쨩의 인스톨 디렉토리에 `memory.json`이라는 이름으로 영속화됩니다.
 
 ## 한국어 번역
-- 역: [@narve@madost.one](https://madost.one/@narve)
-- 식/가벼운 커스텀: [@chocologic@madost.one](https://madost.one/@chocologic)
+- 역: [@narve@madost.one](https://madost.one/@narve), [@noridev@kokonect.link](https://kokonect.link/@noridev)
+- 식/가벼운 커스텀: [@chocologic@madost.one](https://madost.one/@chocologic), [@noridev@kokonect.link](https://kokonect.link/@noridev)
 
 ## 라이센스
 MIT. Originally developed by [Syuilo](https://github.com/syuilo/ai).
