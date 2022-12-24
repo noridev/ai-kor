@@ -188,6 +188,7 @@ export const itemPrefixes = [
 	'활활 타는',
 	'고압',
 	'이상',
+	'거칠게 빻은',
 ];
 
 export const items = [
