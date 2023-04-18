@@ -435,6 +435,7 @@ export const items = [
 	'오염 물질이 섞인 진흙',
 	'그레이팅',
 	'슈퍼카미오칸데',
+	'데스케도거',
 ];
 
 export const and = [
