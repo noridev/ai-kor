@@ -143,6 +143,9 @@ export default class extends Module {
 		// メッセージのみ
 		if (!msg.isDm) return true;
 
+		// メッセージのみ
+		if (!msg.isDm) return true;
+
 		//#region 1日に1回だけ親愛度を上げる(嫌われてない場合のみ)
 		if (msg.friend.love >= 0) {
 			const today = getDate();
@@ -178,6 +181,9 @@ export default class extends Module {
 		// メッセージのみ
 		if (!msg.isDm) return true;
 
+		// メッセージのみ
+		if (!msg.isDm) return true;
+
 		msg.reply(getSerif(
 			msg.friend.love >= 5 ? serifs.core.kawaii.love :
 			msg.friend.love <= -3 ? serifs.core.kawaii.hate :
@@ -193,6 +199,9 @@ export default class extends Module {
 		// メッセージのみ
 		if (!msg.isDm) return true;
 
+		// メッセージのみ
+		if (!msg.isDm) return true;
+
 		msg.reply(
 			msg.friend.love >= 5 ? (msg.friend.name ? serifs.core.suki.love(msg.friend.name) : serifs.core.suki.normal) :
 			msg.friend.love <= -3 ? serifs.core.suki.hate :
@@ -204,6 +213,9 @@ export default class extends Module {
 	@autobind
 	private hug(msg: Message): boolean {
 		if (!msg.or(['규', '무규', /^(안아줘)?$/])) return false;
+
+		// メッセージのみ
+		if (!msg.isDm) return true;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
@@ -242,6 +254,9 @@ export default class extends Module {
 		// メッセージのみ
 		if (!msg.isDm) return true;
 
+		// メッセージのみ
+		if (!msg.isDm) return true;
+
 		msg.reply(
 			msg.friend.love >= 5 ? serifs.core.humu.love :
 			msg.friend.love <= -3 ? serifs.core.humu.hate :
@@ -253,6 +268,9 @@ export default class extends Module {
 	@autobind
 	private batou(msg: Message): boolean {
 		if (!msg.includes(['매도해줘', '욕해줘'])) return false;
+
+		// メッセージのみ
+		if (!msg.isDm) return true;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
@@ -272,6 +290,9 @@ export default class extends Module {
 		// メッセージのみ
 		if (!msg.isDm) return true;
 
+		// メッセージのみ
+		if (!msg.isDm) return true;
+
 		msg.reply(serifs.core.itai(msg.friend.name));
 
 		return true;
@@ -280,6 +301,9 @@ export default class extends Module {
 	@autobind
 	private ote(msg: Message): boolean {
 		if (!msg.or(['손'])) return false;
+
+		// メッセージのみ
+		if (!msg.isDm) return true;
 
 		// メッセージのみ
 		if (!msg.isDm) return true;
