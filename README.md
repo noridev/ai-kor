@@ -51,7 +51,7 @@
 	"memoryDir": "data"
 }
 ```
-`docker-compose build`하고 `docker-compose up` 하면 기능 가는합니다.
+`docker-compose build`하고 `docker-compose up` 하면 기동 가능합니다.
 `docker-compose.yml`의 `enable_mecab`를 `0`으로 하면, MeCab을 설치하지 않습니다. (메모리가 적은 환경 등)
 
 
