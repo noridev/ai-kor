@@ -4,3 +4,11 @@ node_modules
 memory.json
 font.ttf
 .DS_Store
+
+# Visual Studio Code
+/.vscode
+!/.vscode/extensions.json
+
+# Intelij-IDEA
+/.idea
+/.vscode/
