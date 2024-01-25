@@ -1,8 +1,8 @@
 <h1><p align="center"><img src="./ai.svg" alt="藍" height="200"></p></h1>
-<p align="center">An Ai for Misskey. <a href="./torisetu.md">사용법</a></p>
+<p align="center">An Ai for CherryPick. <a href="./torisetu.md">사용법</a></p>
 
 ## 이것에 대한 설명
-미스키용 한국어 봇 입니다! [봇 사용법](./torisetu.md)
+CherryPick용 한국어 봇 입니다! [봇 사용법](./torisetu.md)
 
 ## 설치
 > Node.js와 npm과 MeCab (옵션)[^1]이 설치되어 있어야 합니다.

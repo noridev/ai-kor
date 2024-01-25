@@ -7,7 +7,7 @@ import config from './config.js';
 const ReconnectingWebsocket = _ReconnectingWebsocket as unknown as typeof _ReconnectingWebsocket['default'];
 
 /**
- * Misskey stream connection
+ * CherryPick stream connection
  */
 export default class Stream extends EventEmitter {
 	private stream: any;
