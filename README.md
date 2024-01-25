@@ -19,14 +19,16 @@
 	"host": "https:// + 당신의 인스턴스 URL (맨 뒤의 /는 제외)",
 	"i": "아이쨩을 가동하고 싶은 어카운트의 API 키",
 	"master": "관리자의 사용자명 (옵션)",
-	"notingEnabled": "랜덤으로 노트를 작성하는 기능을 비활성화할 경우 false 입력",
-	"keywordEnabled": "키워드를 기억하는 기능을 (MeCab 필요 / 한글판에서는 미지원) 활성화할 경우에는 true (아니라면 false)",
-	"chartEnabled": "차트 기능을 활성화 하지 않을 때에는 false",
-	"reversiEnabled": "아이쨩과 리버시에서 대전할 수 있는 기능을 활성화 하고 싶은 경우에 true (아니라면 false)",
-	"serverMonitoring": "서버 감시 기능 활성화는 true (아니라면 false)",
+	"notingEnabled": "랜덤으로 노트를 작성하는 기능을 비활성화 하려면 false 를 입력",
+	"keywordEnabled": "키워드를 기억하는 기능을 (MeCab 필요 / 한글판에서는 미지원) 활성화 하려면 true 를 입력 (비활성화는 false)",
+	"chartEnabled": "차트 기능을 비활성화 하려면 false 를 입력해 주세요",
+	"reversiEnabled": "아이쨩과 리버시에서 대전할 수 있는 기능을 활성화 하려면 true 를 입력 (비활성화는 false)",
+	"serverMonitoring": "서버 모니터링 기능을 활성화 하려면 true 를 입력 (비활성화는 false)",
+	"checkEmojisEnabled": "커스텀 이모지 확인 기능을 활성화 하려면 true 를 입력 (아니라면 false)",
+	"checkEmojisAtOnce": "커스텀 이모지 확인 기능으로 게시물을 정리하려면 true 를 입력 (정리하지 않으려면 false)",
 	"mecab": "MeCab의 설치 경로 (소스로 설치한 경우, 보통 /usr/local/bin/mecab)",
 	"mecabDic": "MeCab 사전 파일 경로 (옵션)",
-	"memoryDir": "memory.json의 경로 (옵션, 기본값은 '.'(레파지토리 루트입니다))"
+	"memoryDir": "memory.json의 경로 (옵션, 기본값은 '.'(리포지토리 루트입니다))"
 }
 ```
 <!-- `npm install`하고 `npm run build`하고 `npm start`하면 기동 가능합니다. -->
@@ -41,11 +43,13 @@
 	"host": "https:// + 당신의 인스턴스 URL (맨 뒤의 /는 제외)",
 	"i": "아이쨩을 가동하고 싶은 어카운트의 API 키",
 	"master": "관리자의 사용자명 (옵션)",
-	"notingEnabled": "랜덤으로 노트를 작성하는 기능을 비활성화할 경우 false 입력",
-	"keywordEnabled": "키워드를 기억하는 기능을 (MeCab 필요 / 한글판에서는 미지원) 활성화할 경우에는 true (아니라면 false)",
-	"chartEnabled": "차트 기능을 활성화 하지 않을 때에는 false",
-	"reversiEnabled": "아이쨩과 리버시에서 대전할 수 있는 기능을 활성화 하고 싶은 경우에 true (아니라면 false)",
-	"serverMonitoring": "서버 감시 기능 활성화는 true (아니라면 false)",
+	"notingEnabled": "랜덤으로 노트를 작성하는 기능을 비활성화 하려면 false 를 입력",
+	"keywordEnabled": "키워드를 기억하는 기능을 (MeCab 필요 / 한글판에서는 미지원) 활성화 하려면 true 를 입력 (비활성화는 false)",
+	"chartEnabled": "차트 기능을 비활성화 하려면 false 를 입력해 주세요",
+	"reversiEnabled": "아이쨩과 리버시에서 대전할 수 있는 기능을 활성화 하려면 true 를 입력 (비활성화는 false)",
+	"serverMonitoring": "서버 모니터링 기능을 활성화 하려면 true 를 입력 (비활성화는 false)",
+	"checkEmojisEnabled": "커스텀 이모지 확인 기능을 활성화 하려면 true 를 입력 (아니라면 false)",
+	"checkEmojisAtOnce": "커스텀 이모지 확인 기능으로 게시물을 정리하려면 true 를 입력 (정리하지 않으려면 false)",
 	"mecab": "/usr/bin/mecab",
 	"mecabDic": "/usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd/",
 	"memoryDir": "data"

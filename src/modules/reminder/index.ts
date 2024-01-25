@@ -1,10 +1,10 @@
-import autobind from 'autobind-decorator';
-import * as loki from 'lokijs';
-import Module from '@/module';
-import Message from '@/message';
-import serifs, { getSerif } from '@/serifs';
-import { acct } from '@/utils/acct';
-import config from '@/config';
+import { bindThis } from '@/decorators.js';
+import loki from 'lokijs';
+import Module from '@/module.js';
+import Message from '@/message.js';
+import serifs, { getSerif } from '@/serifs.js';
+import { acct } from '@/utils/acct.js';
+import config from '@/config.js';
 
 const NOTIFY_INTERVAL = 1000 * 60 * 60 * 8;
 
@@ -21,7 +21,7 @@ export default class extends Module {
 		createdAt: number;
 	}>;
 
-	@autobind
+	@bindThis
 	public install() {
 		this.reminds = this.ai.getCollection('reminds', {
 			indices: ['userId', 'id']
@@ -34,7 +34,7 @@ export default class extends Module {
 		};
 	}
 
-	@autobind
+	@bindThis
 	private async mentionHook(msg: Message) {
 		let text = msg.extractedText.toLowerCase();
 		if (!text.startsWith('리마인더') && !text.startsWith('할일') && !text.startsWith('할것') && !text.toLowerCase().startsWith('todo') && !text.toLowerCase().startsWith('//todo') && !text.toLowerCase().startsWith('// todo')) return false;
@@ -100,7 +100,7 @@ export default class extends Module {
 		};
 	}
 
-	@autobind
+	@bindThis
 	private async contextHook(key: any, msg: Message, data: any) {
 		if (msg.text == null) return;
 
@@ -131,7 +131,7 @@ export default class extends Module {
 		}
 	}
 
-	@autobind
+	@bindThis
 	private async timeoutCallback(data) {
 		const remind = this.reminds.findOne({
 			id: data.id

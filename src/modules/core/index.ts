@@ -1,15 +1,15 @@
-import autobind from 'autobind-decorator';
-import Module from '@/module';
-import Message from '@/message';
-import serifs from '@/serifs';
-import { safeForInterpolate } from '@/utils/safe-for-interpolate';
+import { bindThis } from '@/decorators.js';
+import Module from '@/module.js';
+import Message from '@/message.js';
+import serifs from '@/serifs.js';
+import { safeForInterpolate } from '@/utils/safe-for-interpolate.js';
 
 const titles = ['님', '씨', '군', '당신', '쨩', '양', '선생님', '센세'];
 
 export default class extends Module {
 	public readonly name = 'core';
 
-	@autobind
+	@bindThis
 	public install() {
 		return {
 			mentionHook: this.mentionHook,
@@ -17,7 +17,7 @@ export default class extends Module {
 		};
 	}
 
-	@autobind
+	@bindThis
 	private async mentionHook(msg: Message) {
 		if (!msg.text) return false;
 
@@ -30,7 +30,7 @@ export default class extends Module {
 		);
 	}
 
-	@autobind
+	@bindThis
 	private transferBegin(msg: Message): boolean  {
 		if (!msg.text) return false;
 		if (!msg.includes(['인계', '이사', '계이'])) return false;
@@ -48,7 +48,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private transferEnd(msg: Message): boolean  {
 		if (!msg.text) return false;
 		if (!msg.text.startsWith('"') || !msg.text.endsWith('"')) return false;
@@ -66,7 +66,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private setName(msg: Message): boolean  {
 		if (!msg.text) return false;
 		if (!msg.includes(['고불러줘', '라불러줘', '로불러줘'])) return false;
@@ -112,7 +112,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private modules(msg: Message): boolean  {
 		if (!msg.text) return false;
 		if (!msg.or(['modules'])) return false;
@@ -132,7 +132,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private version(msg: Message): boolean  {
 		if (!msg.text) return false;
 		if (!msg.or(['v', 'version', '버전'])) return false;
@@ -144,7 +144,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private async contextHook(key: any, msg: Message, data: any) {
 		if (msg.text == null) return;
 

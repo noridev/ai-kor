@@ -383,6 +383,13 @@ export default {
 		foryou: '그렸어요!'
 	},
 
+	checkCustomEmojis: {
+		post: (server_name, num) => `${server_name}에 ${num}개의 이모지가 추가되었어요!`,
+		emojiPost: emoji => `:${emoji}:\n(\`${emoji}\`) #AddCustomEmojis`,
+		postOnce: (server_name, num, text) => `${server_name}에 ${num}개의 이모지가 추가되었어요!\n${text} #AddCustomEmojis`,
+		emojiOnce: emoji => `:${emoji}:(\`${emoji}\`)`
+	},
+
 	sleepReport: {
 		report: hours => `음, ${hours}시간 정도 잠들었던 것 같아요`,
 		reportUtatane: '으... 잠을 제대로 못 잤어요... :char_sakurako_sad:',

@@ -1,21 +1,21 @@
-import autobind from 'autobind-decorator';
-import { HandlerResult } from '@/ai';
-import Module from '@/module';
-import Message from '@/message';
-import serifs, { getSerif } from '@/serifs';
-import getDate from '@/utils/get-date';
+import { bindThis } from '@/decorators.js';
+import { HandlerResult } from '@/ai.js';
+import Module from '@/module.js';
+import Message from '@/message.js';
+import serifs, { getSerif } from '@/serifs.js';
+import getDate from '@/utils/get-date.js';
 
 export default class extends Module {
 	public readonly name = 'talk';
 
-	@autobind
+	@bindThis
 	public install() {
 		return {
 			mentionHook: this.mentionHook,
 		};
 	}
 
-	@autobind
+	@bindThis
 	private async mentionHook(msg: Message) {
 		if (!msg.text) return false;
 
@@ -37,7 +37,7 @@ export default class extends Module {
 		);
 	}
 
-	@autobind
+	@bindThis
 	private greet(msg: Message): boolean {
 		if (msg.text == null) return false;
 
@@ -106,7 +106,7 @@ export default class extends Module {
 		return false;
 	}
 
-	@autobind
+	@bindThis
 	private erait(msg: Message): boolean {
 		const match = msg.extractedText.match(/(.+?)(했으니까(( 칭찬해)|(칭찬해)))/);
 		if (match) {
@@ -127,7 +127,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private omedeto(msg: Message): boolean {
 		if (!msg.includes(['축하해'])) return false;
 
@@ -136,7 +136,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private nadenade(msg: Message): boolean {
 		if (!msg.includes(['쓰담쓰담'])) return false;
 
@@ -171,7 +171,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private kawaii(msg: Message): boolean {
 		if (!msg.includes(['귀여워', '기여어'])) return false;
 
@@ -186,7 +186,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private suki(msg: Message): boolean {
 		if (!msg.or(['좋아해'])) return false;
 
@@ -201,7 +201,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private hug(msg: Message): boolean {
 		if (!msg.or(['규', '무규', /^(안아줘)?$/])) return false;
 
@@ -235,7 +235,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private humu(msg: Message): boolean {
 		if (!msg.includes(['밟아줘'])) return false;
 
@@ -250,7 +250,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private batou(msg: Message): boolean {
 		if (!msg.includes(['매도해줘', '욕해줘'])) return false;
 
@@ -265,7 +265,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private itai(msg: Message): boolean {
 		if (!msg.or(['아파'])) return false;
 
@@ -277,7 +277,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private ote(msg: Message): boolean {
 		if (!msg.or(['손'])) return false;
 
@@ -292,7 +292,7 @@ export default class extends Module {
 		return true;
 	}
 
-	@autobind
+	@bindThis
 	private ponkotu(msg: Message): boolean | HandlerResult {
 		if (!msg.includes(['바보'])) return false;
 
@@ -303,7 +303,7 @@ export default class extends Module {
 		};
 	}
 
-	@autobind
+	@bindThis
 	private rmrf(msg: Message): boolean | HandlerResult {
 		if (!msg.includes(['rm-rf'])) return false;
 
@@ -314,7 +314,7 @@ export default class extends Module {
 		};
 	}
 
-	@autobind
+	@bindThis
 	private shutdown(msg: Message): boolean | HandlerResult {
 		if (!msg.includes(['shutdown'])) return false;
 
