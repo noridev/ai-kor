@@ -7,7 +7,7 @@ services:
         - enable_mecab=1
     platform: linux/amd64
     volumes:
-      - './config.json:/ai/config.json:ro'
-      - './font.ttf:/ai/font.ttf:ro'
-      - './data:/ai/data'
+      - './config.json:/ai-kor/config.json:ro'
+      - './font.ttf:/ai-kor/font.ttf:ro'
+      - './data:/ai-kor/data'
     restart: always
