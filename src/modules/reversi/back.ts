@@ -59,7 +59,8 @@ class Session {
 	}
 
 	private get userName(): string {
-		const name = getUserName(this.user);
+		let name = getUserName(this.user);
+		if (name.includes('$') || name.includes('<') || name.includes('*')) name = this.user.username;
 		return `?[${name}](${config.host}/@${this.user.username})${titles.some(x => name.endsWith(x)) ? '' : '님'}`;
 	}
 
