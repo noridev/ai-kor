@@ -35,12 +35,6 @@ export default class extends Module {
 		if (!msg.text) return false;
 		if (!msg.includes(['인계', '이사', '계이'])) return false;
 
-		// チャットのみ
-		if (!msg.isChat) {
-			msg.reply(serifs.core.transferNeedDm);
-			return true;
-		}
-
 		const code = msg.friend.generateTransferCode();
 
 		msg.reply(serifs.core.transferCode(code));
