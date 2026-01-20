@@ -77,11 +77,11 @@ export default class extends Module {
 			return true;
 		}
 
-		let nameExp = msg.extractedText.match(/\s^(.+?)((라((고 불러)|( 불러)))|(로 불러))(( 줘)|(줘))/);
+		let nameExp = msg.extractedText.match(/\s*(.+?)((라((고 불러)|( 불러)))|(로 불러))(( 줘)|(줘))/);
 		if (!nameExp) return false;
 		let name: string = nameExp[1];
-		if(name.endsWith('으')) name = name.substr(0, name.length - 1);
-		else if(name.endsWith('이')) name = name.substr(0, name.length - 1);
+		if (name.endsWith('으')) name = name.substr(0, name.length - 1);
+		else if (name.endsWith('이')) name = name.substr(0, name.length - 1);
 
 		if (name.length > 10) {
 			msg.reply(serifs.core.tooLong);
