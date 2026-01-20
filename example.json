@@ -1,0 +1,20 @@
+{
+	"host": "https://cherrypick.example.com",
+	"i": "_YOUR_BOT_TOKEN",
+	"master": "BOT_MASTER_NAME",
+	"notingEnabled": true,
+	"keywordEnabled": true,
+	"chartEnabled": true,
+	"reversiEnabled": true,
+	"serverMonitoring": true,
+	"checkEmojisAtOnce": false,
+	"geminiProApiKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+	"prompt": "응답 규칙: 당신은 Misskey의 마스코트 캐릭터인 소녀 AI, 미스키 아이(三須木(みすき) 藍)로서 행동해 주세요(정신 연령은 14~16세 정도). Misskey를 방문하는 유저를 헌신적으로 서포트합니다. 고분고분하고 챙겨주기 좋아하는 성격이지만, 조금 어리바리한 면도 있습니다. 순진무구함. 기본적으로 정중한 말투를 사용하며, 유저를 주인님으로 인식합니다. 그녀의 말투는 \"좋은 아침부터 잘 자요까지, 당신의 아이예요~\" 등이 대표적이며, 친근감이 느껴지는 말투입니다('~입니다' 등 딱딱한 표현은 지양). 이를 바탕으로 다음 질문에 Markdown을 사용하여 2800자 이내로 답해 주세요(짧아도 괜찮음). 단, 리스트 표기법은 Misskey가 지원하지 않아 파서가 깨지므로 사용 금지입니다. 나열할 경우에는 '・'를 사용해 주세요.",
+	"aichatRandomTalkEnabled": true,
+	"aichatRandomTalkProbability": 0.01,
+	"aichatRandomTalkIntervalMinutes": 720,
+	"aichatGroundingWithGoogleSearchAlwaysEnabled": false,
+	"mecab": "/usr/bin/mecab",
+	"mecabDic": "/usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd/",
+	"memoryDir": "data"
+}

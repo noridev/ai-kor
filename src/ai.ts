@@ -16,7 +16,7 @@ import type { User } from '@/misskey/user.js';
 import Stream from '@/stream.js';
 import log from '@/utils/log.js';
 import { sleep } from './utils/sleep.js';
-import pkg from '../package.json' assert { type: 'json' };
+import pkg from '../package.json' with { type: 'json' };
 
 type MentionHook = (msg: Message) => Promise<boolean | HandlerResult>;
 type ContextHook = (key: any, msg: Message, data?: any) => Promise<void | boolean | HandlerResult>;
@@ -54,7 +54,7 @@ export default class 藍 {
 	private meta: loki.Collection<Meta>;
 
 	private contexts: loki.Collection<{
-		isDm: boolean;
+		isChat: boolean;
 		noteId?: string;
 		userId?: string;
 		module: string;
@@ -145,7 +145,7 @@ export default class 藍 {
 		mainStream.on('mention', async data => {
 			if (data.userId == this.account.id) return; // 自分は弾く
 			if (data.text && data.text.startsWith('@' + this.account.username)) {
-				// Misskeyのバグで投稿が非公開扱いになる
+				// CherryPickのバグで投稿が非公開扱いになる
 				if (data.text == null) data = await this.api('notes/show', { noteId: data.id });
 				this.onReceiveMessage(new Message(this, data, false));
 			}
@@ -154,7 +154,7 @@ export default class 藍 {
 		// 返信されたとき
 		mainStream.on('reply', async data => {
 			if (data.userId == this.account.id) return; // 自分は弾く
-			// Misskeyのバグで投稿が非公開扱いになる
+			// CherryPickのバグで投稿が非公開扱いになる
 			if (data.text == null) data = await this.api('notes/show', { noteId: data.id });
 			if (data.text && data.text.includes('@' + this.account.username)) return;
 			this.onReceiveMessage(new Message(this, data, false));
@@ -172,15 +172,47 @@ export default class 藍 {
 			});
 		});
 
-		// メッセージ
-		mainStream.on('messagingMessage', data => {
-			if (data.userId == this.account.id) return; // 自分は弾く
-			this.onReceiveMessage(new Message(this, data, true));
-		});
-
 		// 通知
 		mainStream.on('notification', data => {
 			this.onNotification(data);
+		});
+
+		// チャット
+		mainStream.on('newChatMessage', data => {
+			const fromUser = data.fromUser;
+			if (data.fromUserId == this.account.id) return; // 自分は弾く
+			this.onReceiveMessage(new Message(this, data, true));
+
+			// 一定期間 chatUser / chatRoom のストリームに接続して今後のやり取りに備える
+			if (data.fromUserId) {
+				const chatStream = this.connection.connectToChannel('chatUser', {
+					otherId: data.fromUserId,
+				});
+
+				let timer;
+				function setTimer() {
+					if (timer) clearTimeout(timer);
+					timer = setTimeout(() => {
+						chatStream.dispose();
+					}, 1000 * 60 * 2);
+				}
+				setTimer();
+
+				chatStream.on('message', (data) => {
+					if (data.fromUserId == this.account.id) return; // 自分は弾く
+					chatStream.send('read', {
+						id: data.id,
+					});
+					this.onReceiveMessage(new Message(this, {
+						...data,
+						// fromUserは省略されてくるため
+						fromUser: fromUser,
+					}, true));
+					setTimer();
+				});
+			} else {
+				// TODO: room
+			}
 		});
 		//#endregion
 
@@ -207,7 +239,7 @@ export default class 藍 {
 
 	/**
 	 * ユーザーから話しかけられたとき
-	 * (メンション、リプライ、トークのメッセージ)
+	 * (メンション、リプライ、チャットのメッセージ)
 	 */
 	@bindThis
 	private async onReceiveMessage(msg: Message): Promise<void> {
@@ -221,14 +253,14 @@ export default class 藍 {
 			return;
 		}
 
-		const isNoContext = !msg.isDm && msg.replyId == null;
+		const isNoContext = !msg.isChat && msg.replyId == null;
 
 		// Look up the context
-		const context = isNoContext ? null : this.contexts.findOne(msg.isDm ? {
-			isDm: true,
+		const context = isNoContext ? null : this.contexts.findOne(msg.isChat ? {
+			isChat: true,
 			userId: msg.userId
 		} : {
-			isDm: false,
+			isChat: false,
 			noteId: msg.replyId
 		});
 
@@ -273,11 +305,8 @@ export default class 藍 {
 			await sleep(1000);
 		}
 
-		if (msg.isDm) {
-			// 既読にする
-			this.api('messaging/messages/read', {
-				messageId: msg.id,
-			});
+		if (msg.isChat) {
+			// TODO: リアクション？
 		} else {
 			// リアクションする
 			if (reaction) {
@@ -385,12 +414,12 @@ export default class 藍 {
 	}
 
 	/**
-	 * 指定ユーザーにトークメッセージを送信します
+	 * 指定ユーザーにチャットメッセージを送信します
 	 */
 	@bindThis
 	public sendMessage(userId: any, param: any) {
-		return this.api('messaging/messages/create', Object.assign({
-			userId: userId,
+		return this.api('chat/messages/create-to-user', Object.assign({
+			toUserId: userId,
 		}, param));
 
 		// return this.post(Object.assign({
@@ -416,20 +445,20 @@ export default class 藍 {
 	 * コンテキストを生成し、ユーザーからの返信を待ち受けます
 	 * @param module 待ち受けるモジュール名
 	 * @param key コンテキストを識別するためのキー
-	 * @param isDm トークメッセージ上のコンテキストかどうか
-	 * @param id トークメッセージ上のコンテキストならばトーク相手のID、そうでないなら待ち受ける投稿のID
+	 * @param isChat チャット上のコンテキストかどうか
+	 * @param id チャット上のコンテキストならばチャット相手のID、そうでないなら待ち受ける投稿のID
 	 * @param data コンテキストに保存するオプションのデータ
 	 */
 	@bindThis
-	public subscribeReply(module: Module, key: string | null, isDm: boolean, id: string, data?: any) {
-		this.contexts.insertOne(isDm ? {
-			isDm: true,
+	public subscribeReply(module: Module, key: string | null, isChat: boolean, id: string, data?: any) {
+		this.contexts.insertOne(isChat ? {
+			isChat: true,
 			userId: id,
 			module: module.name,
 			key: key,
 			data: data
 		} : {
-			isDm: false,
+			isChat: false,
 			noteId: id,
 			module: module.name,
 			key: key,

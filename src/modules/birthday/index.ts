@@ -26,7 +26,7 @@ export default class extends Module {
 		const now = new Date();
 		const m = now.getMonth();
 		const d = now.getDate();
-		// Misskeyの誕生日は 2018-06-16 のような形式
+		// CherryPickの誕生日は 2018-06-16 のような形式
 		const today = `${zeroPadding(m + 1, 2)}-${zeroPadding(d, 2)}`;
 
 		const birthFriends = this.ai.friends.find({

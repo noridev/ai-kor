@@ -387,7 +387,14 @@ export default {
 		post: (server_name, num) => `${server_name}에 ${num}개의 이모지가 추가되었어요!`,
 		emojiPost: emoji => `:${emoji}:\n(\`${emoji}\`) #AddCustomEmojis`,
 		postOnce: (server_name, num, text) => `${server_name}에 ${num}개의 이모지가 추가되었어요!\n${text} #AddCustomEmojis`,
-		emojiOnce: emoji => `:${emoji}:(\`${emoji}\`)`
+		emojiOnce: emoji => `:${emoji}:(\`${emoji}\`)`,
+		nothing: '이모지를 확인했지만 아무것도 추가되지 않은 것 같아요',
+	},
+
+	aichat: {
+		nothing: type => `앗... ${type}의 API 키가 등록되어 있지 않은 것 같아요`,
+		error: type => `앗...${type}에서 오류가 발생한 것 같아요. gemini-flash로 하면 작동할지도..?`,
+		post: (text, type) => `${text} (${type}) #aichat`,
 	},
 
 	sleepReport: {

@@ -8,7 +8,7 @@ import promiseRetry from 'promise-retry';
 import 藍 from './ai.js';
 import config from './config.js';
 import _log from './utils/log.js';
-import pkg from '../package.json' assert { type: 'json' };
+import pkg from '../package.json' with { type: 'json' };
 
 import CoreModule from './modules/core/index.js';
 import TalkModule from './modules/talk/index.js';
@@ -34,6 +34,7 @@ import NotingModule from './modules/noting/index.js';
 import PollModule from './modules/poll/index.js';
 import ReminderModule from './modules/reminder/index.js';
 import CheckCustomEmojisModule from './modules/check-custom-emojis/index.js';
+import AiChatModule from './modules/aichat/index.js';
 
 console.log('   __    ____  _____  ___ ');
 console.log('  /__\\  (_  _)(  _  )/ __)');
@@ -73,6 +74,10 @@ promiseRetry(retry => {
 	// 藍起動
 	new 藍(account, [
 		new CoreModule(),
+		new AiChatModule(),
+		new ReminderModule(),
+		new TalkModule(),
+		new CheckCustomEmojisModule(),
 		new EmojiModule(),
 		new EmojiReactModule(),
 		new FortuneModule(),
@@ -81,7 +86,6 @@ promiseRetry(retry => {
 		new ReversiModule(),
 		new TimerModule(),
 		new DiceModule(),
-		new TalkModule(),
 		new PingModule(),
 		new WelcomeModule(),
 		new ServerModule(),
@@ -94,8 +98,6 @@ promiseRetry(retry => {
 		new SleepReportModule(),
 		new NotingModule(),
 		new PollModule(),
-		new ReminderModule(),
-		new CheckCustomEmojisModule(),
 	]);
 }).catch(e => {
 	log(chalk.red('Failed to fetch the account'));

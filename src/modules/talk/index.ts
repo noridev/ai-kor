@@ -140,8 +140,8 @@ export default class extends Module {
 	private nadenade(msg: Message): boolean {
 		if (!msg.includes(['쓰담쓰담'])) return false;
 
-		// メッセージのみ
-		if (!msg.isDm) return true;
+		// チャットのみ
+		if (!msg.isChat) return true;
 
 		//#region 1日に1回だけ親愛度を上げる(嫌われてない場合のみ)
 		if (msg.friend.love >= 0) {
@@ -175,8 +175,8 @@ export default class extends Module {
 	private kawaii(msg: Message): boolean {
 		if (!msg.includes(['귀여워', '기여어'])) return false;
 
-		// メッセージのみ
-		if (!msg.isDm) return true;
+		// チャットのみ
+		if (!msg.isChat) return true;
 
 		msg.reply(getSerif(
 			msg.friend.love >= 5 ? serifs.core.kawaii.love :
@@ -190,8 +190,8 @@ export default class extends Module {
 	private suki(msg: Message): boolean {
 		if (!msg.or(['좋아해'])) return false;
 
-		// メッセージのみ
-		if (!msg.isDm) return true;
+		// チャットのみ
+		if (!msg.isChat) return true;
 
 		msg.reply(
 			msg.friend.love >= 5 ? (msg.friend.name ? serifs.core.suki.love(msg.friend.name) : serifs.core.suki.normal) :
@@ -205,8 +205,8 @@ export default class extends Module {
 	private hug(msg: Message): boolean {
 		if (!msg.or(['규', '무규', /^(안아줘)?$/])) return false;
 
-		// メッセージのみ
-		if (!msg.isDm) return true;
+		// チャットのみ
+		if (!msg.isChat) return true;
 
 		//#region 前のハグから1分経ってない場合は返信しない
 		// これは、「ハグ」と言って「ぎゅー」と返信したとき、相手が
@@ -239,8 +239,8 @@ export default class extends Module {
 	private humu(msg: Message): boolean {
 		if (!msg.includes(['밟아줘'])) return false;
 
-		// メッセージのみ
-		if (!msg.isDm) return true;
+		// チャットのみ
+		if (!msg.isChat) return true;
 
 		msg.reply(
 			msg.friend.love >= 5 ? serifs.core.humu.love :
@@ -254,8 +254,8 @@ export default class extends Module {
 	private batou(msg: Message): boolean {
 		if (!msg.includes(['매도해줘', '욕해줘'])) return false;
 
-		// メッセージのみ
-		if (!msg.isDm) return true;
+		// チャットのみ
+		if (!msg.isChat) return true;
 
 		msg.reply(
 			msg.friend.love >= 5 ? serifs.core.batou.love :
@@ -269,8 +269,8 @@ export default class extends Module {
 	private itai(msg: Message): boolean {
 		if (!msg.or(['아파'])) return false;
 
-		// メッセージのみ
-		if (!msg.isDm) return true;
+		// チャットのみ
+		if (!msg.isChat) return true;
 
 		msg.reply(serifs.core.itai(msg.friend.name));
 
@@ -281,8 +281,8 @@ export default class extends Module {
 	private ote(msg: Message): boolean {
 		if (!msg.or(['손'])) return false;
 
-		// メッセージのみ
-		if (!msg.isDm) return true;
+		// チャットのみ
+		if (!msg.isChat) return true;
 
 		msg.reply(
 			msg.friend.love >= 10 ? serifs.core.ote.love2 :

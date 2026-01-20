@@ -14,7 +14,7 @@ export default class extends Module {
 	private reminds: loki.Collection<{
 		userId: string;
 		id: string;
-		isDm: boolean;
+		isChat: boolean;
 		thing: string | null;
 		quoteId: string | null;
 		times: number; // 催促した回数(使うのか？)
@@ -70,7 +70,7 @@ export default class extends Module {
 		const remind = this.reminds.insertOne({
 			id: msg.id,
 			userId: msg.userId,
-			isDm: msg.isDm,
+			isChat: msg.isChat,
 			thing: thing === '' ? null : thing,
 			quoteId: msg.quoteId,
 			times: 0,
@@ -78,7 +78,7 @@ export default class extends Module {
 		});
 
 		// メンションをsubscribe
-		this.subscribeReply(remind!.id, msg.isDm, msg.isDm ? msg.userId : msg.id, {
+		this.subscribeReply(remind!.id, msg.isChat, msg.isChat ? msg.userId : msg.id, {
 			id: remind!.id
 		});
 
@@ -126,7 +126,7 @@ export default class extends Module {
 			msg.reply(serifs.reminder.doneFromInvalidUser);
 			return;
 		} else {
-			if (msg.isDm) this.unsubscribeReply(key);
+			if (msg.isChat) this.unsubscribeReply(key);
 			return false;
 		}
 	}
@@ -145,7 +145,7 @@ export default class extends Module {
 		if (friend == null) return; // 処理の流れ上、実際にnullになることは無さそうだけど一応
 
 		let reply;
-		if (remind.isDm) {
+		if (remind.isChat) {
 			this.ai.sendMessage(friend.userId, {
 				text: serifs.reminder.notifyWithThing(remind.thing, friend.name)
 			});
@@ -166,7 +166,7 @@ export default class extends Module {
 			}
 		}
 
-		this.subscribeReply(remind.id, remind.isDm, remind.isDm ? remind.userId : reply.id, {
+		this.subscribeReply(remind.id, remind.isChat, remind.isChat ? remind.userId : reply.id, {
 			id: remind.id
 		});
 

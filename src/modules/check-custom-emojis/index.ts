@@ -43,14 +43,35 @@ export default class extends Module {
 	}
 
 	@bindThis
-	private async post() {
+	private async post(byMentionHook:boolean = false) {
 		this.log('Start to Check CustomEmojis.');
 		const lastEmoji = this.lastEmoji.find({});
 
 		const lastId = lastEmoji.length != 0 ? lastEmoji[0].id : null;
-		const emojisData = await this.checkCumstomEmojis(lastId);
-		if (emojisData.length == 0) {
+		let emojisData:any[] | null = null;
+		try {
+			emojisData = await this.checkCumstomEmojis(lastId);
+		} catch (err: unknown) {
+			this.log('Error By API(admin/emoji/list)');
+			if (err instanceof Error) {
+				this.log(`${err.name}\n${err.message}`);
+			}
+		}
+		if (emojisData === null) {
+			const errMessage = 'read:admin:emoji 권한이 없어서 오류가 발생했습니다.\n커스텀 이모지 관리 권한이 부여되어 있는지 다시 확인해 주세요.';
+			this.log(errMessage);
+			await this.ai.post({
+				text: errMessage
+			});
+			return;
+		}
+		else if (emojisData.length == 0) {
 			this.log('No CustomEmojis Added.');
+			if (byMentionHook) {
+				await this.ai.post({
+					text: serifs.checkCustomEmojis.nothing
+				});
+			}
 			return;
 		}
 
@@ -148,7 +169,7 @@ export default class extends Module {
 			this.log('Check CustomEmojis requested');
 		}
 
-		await this.post();
+		await this.post(true);
 
 		return {
 			reaction: 'like'

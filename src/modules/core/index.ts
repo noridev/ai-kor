@@ -35,8 +35,8 @@ export default class extends Module {
 		if (!msg.text) return false;
 		if (!msg.includes(['인계', '이사', '계이'])) return false;
 
-		// メッセージのみ
-		if (!msg.isDm) {
+		// チャットのみ
+		if (!msg.isChat) {
 			msg.reply(serifs.core.transferNeedDm);
 			return true;
 		}
@@ -72,15 +72,12 @@ export default class extends Module {
 		if (!msg.includes(['고불러줘', '라불러줘', '로불러줘'])) return false;
 		if (msg.text.startsWith('라고 불러줘')||msg.text.startsWith('라 불러줘')||msg.text.startsWith('로 불러줘')) return false;
 
-		// メッセージのみ
-		if (!msg.isDm) return true;
-
 		if (msg.friend.love < 5) {
 			msg.reply(serifs.core.requireMoreLove);
 			return true;
 		}
 
-		let nameExp = msg.text.match(/^(.+?)((라((고 불러)|( 불러)))|(로 불러))(( 줘)|(줘))/);
+		let nameExp = msg.extractedText.match(/\s^(.+?)((라((고 불러)|( 불러)))|(로 불러))(( 줘)|(줘))/);
 		if (!nameExp) return false;
 		let name: string = nameExp[1];
 		if(name.endsWith('으')) name = name.substr(0, name.length - 1);
@@ -103,7 +100,7 @@ export default class extends Module {
 			msg.reply(serifs.core.setNameOk(name));
 		} else {
 			msg.reply(serifs.core.san).then(reply => {
-				this.subscribeReply(msg.userId, msg.isDm, msg.isDm ? msg.userId : reply.id, {
+				this.subscribeReply(msg.userId, msg.isChat, msg.isChat ? msg.userId : reply.id, {
 					name: name
 				});
 			});
@@ -161,7 +158,7 @@ export default class extends Module {
 			done();
 		} else {
 			msg.reply(serifs.core.yesOrNo).then(reply => {
-				this.subscribeReply(msg.userId, msg.isDm, reply.id, data);
+				this.subscribeReply(msg.userId, msg.isChat, reply.id, data);
 			});
 		}
 	}

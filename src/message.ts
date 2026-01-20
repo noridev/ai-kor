@@ -11,31 +11,36 @@ import { sleep } from '@/utils/sleep.js';
 
 export default class Message {
 	private ai: 藍;
-	private messageOrNote: any;
-	public isDm: boolean;
+	private chatMessage: { id: string; fromUser: any; fromUserId: string; text: string; } | null;
+	private note: { id: string; user: any; userId: string; text: string; renoteId: string; replyId: string; } | null;
+	public isChat: boolean;
 
 	public get id(): string {
-		return this.messageOrNote.id;
+		return this.chatMessage ? this.chatMessage.id : this.note.id;
 	}
 
 	public get user(): User {
-		return this.messageOrNote.user;
+		return this.chatMessage ? this.chatMessage.fromUser : this.note.user;
 	}
 
 	public get userId(): string {
-		return this.messageOrNote.userId;
+		return this.chatMessage ? this.chatMessage.fromUserId : this.note.userId;
 	}
 
 	public get text(): string {
-		return this.messageOrNote.text;
+		return this.chatMessage ? this.chatMessage.text : this.note.text;
 	}
 
 	public get quoteId(): string | null {
-		return this.messageOrNote.renoteId;
+		return this.chatMessage ? null : this.note.renoteId;
 	}
 
-	public get visibility(): string {
-		return this.messageOrNote.visibility;
+	public get replyId(): string | null {
+		return this.chatMessage ? null : this.note.replyId;
+	}
+
+	public get visibility(): string | null {
+		return this.chatMessage ? null : this.note.visibility;
 	}
 
 	/**
@@ -49,16 +54,13 @@ export default class Message {
 			.trim();
 	}
 
-	public get replyId(): string {
-		return this.messageOrNote.replyId;
-	}
-
 	public friend: Friend;
 
-	constructor(ai: 藍, messageOrNote: any, isDm: boolean) {
+	constructor(ai: 藍, chatMessageOrNote: any, isChat: boolean) {
 		this.ai = ai;
-		this.messageOrNote = messageOrNote;
-		this.isDm = isDm;
+		this.chatMessage = isChat ? chatMessageOrNote : null;
+		this.note = isChat ? null : chatMessageOrNote;
+		this.isChat = isChat;
 
 		this.friend = new Friend(ai, { user: this.user });
 
@@ -85,15 +87,14 @@ export default class Message {
 			await sleep(2000);
 		}
 
-		if (this.isDm) {
-			return await this.ai.sendMessage(this.messageOrNote.userId, {
+		if (this.chatMessage) {
+			return await this.ai.sendMessage(this.chatMessage.fromUserId, {
 				text: text,
 				fileId: opts?.file?.id
 			});
 		} else {
 			return await this.ai.post({
-				visibility: this.messageOrNote.visibility,
-				replyId: this.messageOrNote.id,
+				replyId: this.note.id,
 				text: text,
 				fileIds: opts?.file ? [opts?.file.id] : undefined,
 				cw: opts?.cw,
