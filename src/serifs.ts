@@ -37,10 +37,10 @@ export default {
 
 			specify: (thing, name) => name ? [
 				`${name}, ${thing}라는건 정말 대단해요!`,
-				`${name}, ${thing}라는건 정말 대단하네요 ~♪`
+				`${name}, ${thing}라는건 정말 대단하네요~♪`
 			] : [
 				`${thing}라는건 대단해요!`,
-				`${thing}라는건 대단하네요 ~♪`
+				`${thing}라는건 대단하네요~♪`
 			],
 
 			specify2: (thing, name) => name ? [
@@ -134,7 +134,7 @@ export default {
 			hate: '...머리 괜찮아요?'
 		},
 
-		itai: name => name ? `${name}, 괜찮아요...?아픈거 아픈거 살살 날아가라!` : '괜찮아요...? 아픈거 다 날아가라!',
+		itai: name => name ? `${name}, 괜찮아요...? 아픈거 아픈거 살살 날아가라!` : '괜찮아요...? 아픈거 다 날아가라!',
 
 		ote: {
 			normal: '쿵... 저는 댕댕이가 아니라구요...?',
@@ -156,7 +156,7 @@ export default {
 	},
 
 	keyword: {
-		learned: (word, reading) => `(${word}..... ${reading}..... 기억했습니다)`,
+		learned: (word, reading) => `(${word}..... ${reading}..... 음! 기억했어요!)`,
 
 		remembered: (word) => `${word}`
 	},
@@ -191,47 +191,47 @@ export default {
 		/**
 		 * 接待開始
 		 */
-		startedSettai: name => `(${name}과의 대전을 시작했어요)`,
+		startedSettai: name => `(${name}님과의 대전을 시작했어요)`,
 
 		/**
 		 * 勝ったとき
 		 */
-		iWon: name => `${name}을 이겼어요♪`,
+		iWon: name => `${name}님을 이겼어요♪`,
 
 		/**
 		 * 接待のつもりが勝ってしまったとき
 		 */
-		iWonButSettai: name => `(${name}과의 대국에서 이겨버렸어요...)`,
+		iWonButSettai: name => `(${name}님과의 대국에서 이겨버렸어요...)`,
 
 		/**
 		 * 負けたとき
 		 */
-		iLose: name => `${name}에게 졌어요오...`,
+		iLose: name => `${name}님에게 졌어요오...`,
 
 		/**
 		 * 接待で負けてあげたとき
 		 */
-		iLoseButSettai: name => `(${name}과의 대전에서 져드렸답니다...♪)`,
+		iLoseButSettai: name => `(${name}님과의 대전에서 져드렸답니다...♪)`,
 
 		/**
 		 * 引き分けたとき
 		 */
-		drawn: name => `${name}과 비겼어요~`,
+		drawn: name => `${name}님과 비겼어요~`,
 
 		/**
 		 * 接待で引き分けたとき
 		 */
-		drawnSettai: name => `(${name}과의 대전에서 비겼어요...)`,
+		drawnSettai: name => `(${name}님과의 대전에서 비겼어요...)`,
 
 		/**
 		 * 相手が投了したとき
 		 */
-		youSurrendered: name => `${name}이 항복해버렸어요`,
+		youSurrendered: name => `${name}님이 항복해버렸어요.. 어라...`,
 
 		/**
 		 * 接待してたら相手が投了したとき
 		 */
-		settaiButYouSurrendered: name => `(${name}과 대전하던 도중에 항복을 받아내 버렸어요... 미안해요(웃음))`,
+		settaiButYouSurrendered: name => `(${name}님과 대전하던 도중에 항복을 받아내 버렸어요... 미안해요(웃음))`,
 	},
 
 	/**
@@ -246,7 +246,7 @@ export default {
 		/**
 		 * タイムライン上で誘われたとき
 		 */
-		plzDm: '메세지로 해요!',
+		plzDm: '메시지로 해요! 선톡 기대할게요?',
 
 		/**
 		 * ゲーム開始
@@ -261,7 +261,7 @@ export default {
 		/**
 		 * 中止を要求されたとき
 		 */
-		cancel: '알겠습니다~ 고마워요♪',
+		cancel: '알겠어요~ 고마워요♪',
 
 		/**
 		 * 小さい数を言われたとき
@@ -297,7 +297,7 @@ export default {
 
 		matakondo: '다음 기회에 또 해요!',
 
-		intro: minutes => `여러분, 숫자 따기 게임 해요 ! \n0~100 사이에서 가장 큰 숫자를 따는 사람이 승리에요. 다른 사람과 겹치면 안돼요~ \n제한시간은 ${minutes}분 이에요. 숫자는 이 글에 답글로 보내주세요 !`,
+		intro: minutes => `여러분, 숫자 따기 게임 해요 ! \n0~100 사이에서 가장 큰 숫자를 따는 사람이 승리에요. 다른 사람과 겹치면 안돼요~ \n제한 시간은 ${minutes}분 이에요. 숫자는 이 글에 답글로 보내주세요 !`,
 
 		finish: '게임 결과 발표입니다!',
 
@@ -345,7 +345,7 @@ export default {
 
 		reminds: '해야할 일이 있어요!',
 
-		notify: (name) => name ? `${name}, 이거 하셨어요?` : `이거 하셨나요?`,
+		notify: (name) => name ? `${name}님! 이거 하셨어요?` : `이거 하셨나요?`,
 
 		notifyWithThing: (thing, name) => name ? `${name}, "${thing}" 하셨나요?` : `"${thing}" 하셨나요?`,
 
@@ -462,15 +462,15 @@ export default {
 			'꾸벅꾸벅...',
 			'메모리가 오장육부에 스며들어요',
 			'i pwned you!',
-			'ひょこっ',
-			'にゃん♪',
+			'빼꼼',
+			'냥♪',
 			'(*>ω<*)',
-			'にこー♪',
-			'ぷくー',
-			'にゃふぅ',
-			'藍が来ましたよ～',
-			'じー',
-			'はにゃ？',
+			'방긋♪',
+			'뿌우',
+			'냐후',
+			'아이가 왔어요~',
+			'빠아안...',
+			'흐냐?',
 		],
 		want: item => `${item}이 갖고 싶어...`,
 		see: item => `오늘 산책하던 중에, 길에 ${item}이 떨어져 있는 것을 봤어요!`,
