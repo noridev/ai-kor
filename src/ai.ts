@@ -239,7 +239,7 @@ export default class 藍 {
 
 	/**
 	 * ユーザーから話しかけられたとき
-	 * (メンション、リプライ、チャットのメッセージ)
+	 * (メンション、リプライ、トークのメッセージ)
 	 */
 	@bindThis
 	private async onReceiveMessage(msg: Message): Promise<void> {
